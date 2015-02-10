@@ -26,6 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
+gem 'thin'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -41,3 +42,29 @@ group :development, :test do
   gem 'spring'
 end
 
+
+
+
+gem 'geocoder'
+gem 'geokit'
+gem 'geokit-rails'
+gem 'underscore-rails'
+gem 'gmaps4rails'
+gem 'country_select', github: 'stefanpenner/country_select'
+
+#gem 'date_validator'
+#gem 'jc-validates_timeliness'
+
+
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'annotate'
+  gem 'rubycritic', :require => false
+  #gem 'guard'
+  #gem 'guard-annotate'
+  #gem 'guard-bundler'
+  #gem 'guard-livereload'
+  #gem 'guard-migrate'
+  #gem 'guard-rubycritic'
+end

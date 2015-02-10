@@ -1,6 +1,9 @@
 class CreateCompetitions < ActiveRecord::Migration
   def change
     create_table :competitions do |t|
+      t.string :name
+      t.date :start
+      t.date :end
 
       t.timestamps null: false
     end

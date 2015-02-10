@@ -18,7 +18,7 @@ class CompetitionsControllerTest < ActionController::TestCase
 
   test "should create competition" do
     assert_difference('Competition.count') do
-      post :create, competition: {  }
+      post :create, competition: { end: @competition.end, name: @competition.name, start: @competition.start }
     end
 
     assert_redirected_to competition_path(assigns(:competition))
@@ -35,7 +35,7 @@ class CompetitionsControllerTest < ActionController::TestCase
   end
 
   test "should update competition" do
-    patch :update, id: @competition, competition: {  }
+    patch :update, id: @competition, competition: { end: @competition.end, name: @competition.name, start: @competition.start }
     assert_redirected_to competition_path(assigns(:competition))
   end
 
