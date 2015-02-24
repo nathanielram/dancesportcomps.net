@@ -16,10 +16,11 @@
 #  website          :string
 #  latitude         :float
 #  longitude        :float
+#  location_name    :string
 #
 
 class Competition < ActiveRecord::Base
-  validates :name, :address, :city, :country, :comp_association, presence: true
+  validates :name, :location_name, :address, :city, :country, :comp_association, presence: true
   #validate :end_after_start, :validate_dates
 
   geocoded_by :location_short
