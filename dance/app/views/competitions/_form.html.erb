@@ -47,3 +47,7 @@
     <%= f.submit %>
   </div>
 <% end %>
+
+<%= params.inspect %>
+<%= Date.valid_date?("start_date(1i)".to_i, "start_date(2i)".to_i, "start_date(3i)".to_i) %>
+<%= :start_date.to_s %>

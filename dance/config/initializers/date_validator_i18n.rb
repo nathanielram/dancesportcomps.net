@@ -1,1 +1,1 @@
-I18n.load_path << "#{Gem.loaded_specs['date_validator'].full_gem_path}/locales/en.yml"
+#I18n.load_path << "#{Gem.loaded_specs['date_validator'].full_gem_path}/locales/en.yml"

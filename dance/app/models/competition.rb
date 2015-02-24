@@ -20,9 +20,7 @@
 
 class Competition < ActiveRecord::Base
   validates :name, :address, :city, :country, :comp_association, presence: true
-
-  #validates_date :start_date
-  #validates_date :end_date, on_or_after: :start_date
+  #validate :end_after_start, :validate_dates
 
   geocoded_by :location_short
 
@@ -44,6 +42,16 @@ class Competition < ActiveRecord::Base
   def location_updated?
     address_changed? || city_changed? || country_changed?
     # location_changed?
+  end
+
+  def end_after_start
+    # return if start_date.blank? || end_date.blank?
+    errors.add(:end_date, "must be after the start date") if :end_date < :start_date
+  end
+
+  def validate_dates
+    errors.add(:start_date, "is not a valid date") unless Date.valid_date?("start_date(1i)".to_i, "start_date(2i)".to_i, "start_date(3i)".to_i)
+    #errors.add(:end_date, "is not a valid date") if Date.valid_date?(:end_date)
   end
 
 end
