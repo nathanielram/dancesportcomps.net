@@ -26,10 +26,10 @@
         <td><%= competition.name %></td>
         <td><%= competition.start_date %></td>
         <td><%= competition.end_date %></td>
-        <td><%= competition.comp_association %></td>
+        <td><%= competition.local_comp_association %> (<%= competition.comp_association %>)</td>
         <td><%= competition.location_name %></td>
         <td><%= competition.location %></td>
-        <td><%= link_to "Website", competition.website %></td>
+        <td><%= link_to competition.website, competition.website_full, :target => '_blank' %></td>
         <td><%= link_to 'Show', competition %></td>
         <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
         <td><%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %></td>

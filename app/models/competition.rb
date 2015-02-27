@@ -21,6 +21,7 @@
 
 class Competition < ActiveRecord::Base
   validates :name, :location_name, :address, :city, :country, :comp_association, presence: true
+  #validates_format_of :website, :with => URI::regexp(%w(http https))
   #validate :end_after_start, :validate_dates
 
   geocoded_by :location_short
@@ -37,6 +38,24 @@ class Competition < ActiveRecord::Base
 
   def country_name
     ISO3166::Country[country.to_s].name unless country.to_s.empty?
+  end
+
+  def local_comp_association
+    a = {}
+
+    a[:CA] = {}
+    a[:CA][:WDC] = "CDF/NDCC"
+    a[:CA][:WDSF] = "Dancesport Canada"
+
+    a[:US] = {}
+    a[:US][:WDC] = "NDCA"
+    a[:US][:WDSF] = "USA Dance"
+
+    (a[country.to_sym].key? comp_association.to_sym) ? a[country.to_sym][comp_association.to_sym] : comp_association
+  end
+
+  def website_full
+    /^http/i.match(website.to_s) ? website.to_s : "http://#{website}"
   end
 
   private
