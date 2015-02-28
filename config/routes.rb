@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :competitions
+  devise_for :users, controllers: { sessions: 'users/sessions' }
+  resources :competitions do
+    get 'past', on: :collection
+    get 'future', on: :collection
+  end
 
   root 'competitions#index'
 

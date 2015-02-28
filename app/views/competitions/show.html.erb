@@ -6,18 +6,13 @@
 </p>
 
 <p>
-  <strong>Start:</strong>
-  <%= @competition.start_date %>
-</p>
-
-<p>
-  <strong>End:</strong>
-  <%= @competition.end_date %>
+  <strong>Date:</strong>
+  <%= date_range @competition.start_date, @competition.end_date, format: :long %>
 </p>
 
 <p>
   <strong>Association:</strong>
-  <%= @competition.comp_association %>
+  <%= @competition.local_comp_association %> (<%= @competition.comp_association %>)
 </p>
 
 <p>
@@ -32,8 +27,10 @@
 
 <p>
   <strong>Website:</strong>
-  <%= @competition.website %>
+  <%= link_to @competition.website, @competition.website_full, :target => '_blank' %>
 </p>
 
+<% if user_signed_in? %>
 <%= link_to 'Edit', edit_competition_path(@competition) %> |
 <%= link_to 'Back', competitions_path %>
+<% end %>

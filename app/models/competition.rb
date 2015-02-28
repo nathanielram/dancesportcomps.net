@@ -22,7 +22,7 @@
 class Competition < ActiveRecord::Base
   validates :name, :location_name, :address, :city, :country, :comp_association, presence: true
   #validates_format_of :website, :with => URI::regexp(%w(http https))
-  #validate :end_after_start, :validate_dates
+  validate :end_after_start#, :validate_dates
 
   geocoded_by :location_short
 
@@ -65,13 +65,11 @@ class Competition < ActiveRecord::Base
   end
 
   def end_after_start
-    # return if start_date.blank? || end_date.blank?
-    errors.add(:end_date, "must be after the start date") if :end_date < :start_date
+    errors.add(:end_date, "must be after the start date") if Date.parse("#{end_date}") < Date.parse("#{start_date}")
   end
 
   def validate_dates
     errors.add(:start_date, "is not a valid date") unless Date.valid_date?("start_date(1i)".to_i, "start_date(2i)".to_i, "start_date(3i)".to_i)
     #errors.add(:end_date, "is not a valid date") if Date.valid_date?(:end_date)
   end
-
 end

@@ -1,16 +1,26 @@
 class CompetitionsController < ApplicationController
+  before_action :authenticate_user!, except: [:index, :past, :future]
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
   # GET /competitions
   # GET /competitions.json
   def index
     # @competitions = Competition.all
-    @competitions = Competition.where(["end_date >= ?", Date.today]).order("start_date asc")
-    @markers = Gmaps4rails.build_markers(@competitions) do |comp, marker|
-      marker.lat comp.latitude
-      marker.lng comp.longitude
-      marker.infowindow comp.name
-    end
+    @competitions = Competition.where(["end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)]).order("start_date asc")
+    build_markers
+    render :index
+  end
+
+  def past
+    @competitions = Competition.where(["end_date < ?", Date.today]).order("start_date desc")
+    build_markers
+    render :index
+  end
+
+  def future
+    @competitions = Competition.where(["start_date > ?", (Date.today + 1.year)]).order("start_date asc")
+    build_markers
+    render :index
   end
 
   # GET /competitions/1
@@ -72,6 +82,14 @@ class CompetitionsController < ApplicationController
     def set_competition
       @competition = Competition.find(params[:id])
     end
+
+    def build_markers
+      @markers = Gmaps4rails.build_markers(@competitions) do |comp, marker|
+        marker.lat comp.latitude
+        marker.lng comp.longitude
+        marker.infowindow comp.name
+      end
+    end    
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params

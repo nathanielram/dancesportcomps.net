@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Competitions</h1>
+<%= render 'login_logout' %>
+
+<%= link_to "Past Competitions", past_competitions_path %>
+<%= link_to "Future Competitions", future_competitions_path %>
+
+<h1>Dancesport Competitions</h1>
 
 <div style='width: 800px;'>
   <div id="map" style='width: 800px; height: 400px;'></div>
@@ -10,8 +15,7 @@
   <thead>
     <tr>
       <th>Name</th>
-      <th>Start</th>
-      <th>End</th>
+      <th>Date</th>
       <th>Association</th>
       <th>Location Name</th>
       <th>Location</th>
@@ -24,15 +28,16 @@
     <% @competitions.each do |competition| %>
       <tr>
         <td><%= competition.name %></td>
-        <td><%= competition.start_date %></td>
-        <td><%= competition.end_date %></td>
+        <td><%= date_range competition.start_date, competition.end_date, format: :long %></td>
         <td><%= competition.local_comp_association %> (<%= competition.comp_association %>)</td>
         <td><%= competition.location_name %></td>
         <td><%= competition.location %></td>
         <td><%= link_to competition.website, competition.website_full, :target => '_blank' %></td>
+        <% if user_signed_in? %>
         <td><%= link_to 'Show', competition %></td>
         <td><%= link_to 'Edit', edit_competition_path(competition) %></td>
         <td><%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
@@ -40,7 +45,9 @@
 
 <br>
 
+<% if user_signed_in? %>
 <%= link_to 'New Competition', new_competition_path %>
+<% end %>
 
 <%= javascript_tag do %>
   $(function() {
