@@ -1,3 +1,18 @@
 // Place all the styles related to the competitions controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+table {
+	thead > tr {
+		background-color: #FFF !important;
+	}
+
+	tr:nth-child(even) {
+  		background-color: #FFF;
+	}
+
+	tr:nth-child(odd) {
+  		background-color: #B4B4B4;
+	}
+
+}

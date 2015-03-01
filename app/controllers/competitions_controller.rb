@@ -6,7 +6,12 @@ class CompetitionsController < ApplicationController
   # GET /competitions.json
   def index
     # @competitions = Competition.all
-    @competitions = Competition.where(["end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)]).order("start_date asc")
+    results = Competition.where(["end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)]).order("start_date asc")
+    if search
+      @competitions &= results
+    else
+      @competitions = results
+    end
     build_markers
     render :index
   end
@@ -21,6 +26,12 @@ class CompetitionsController < ApplicationController
     @competitions = Competition.where(["start_date > ?", (Date.today + 1.year)]).order("start_date asc")
     build_markers
     render :index
+  end
+
+  def search 
+    unless params[:location].empty? || params[:distance].empty?
+      @competitions = Competition.near(params[:location], params[:distance].to_i)
+    end
   end
 
   # GET /competitions/1
@@ -93,6 +104,6 @@ class CompetitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params
-      params.require(:competition).permit(:name, :comp_association, :start_date, :end_date, :location_name, :location, :address, :city, :country, :website, :latitude, :longitude)
+      params.require(:competition).permit(:name, :comp_association, :start_date, :end_date, :location_name, :location, :address, :city, :country, :website, :latitude, :longitude, :distance)
     end
 end

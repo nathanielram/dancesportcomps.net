@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :competitions do
     get 'past', on: :collection
     get 'future', on: :collection
+    post 'search', to: 'competitions#index', on: :collection
   end
 
   root 'competitions#index'

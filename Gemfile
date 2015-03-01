@@ -59,6 +59,8 @@ gem 'time_will_tell'
 
 gem 'devise'
 
+gem 'foundation-rails'
+gem 'font-awesome-rails'
 
 group :development do
   gem 'better_errors'

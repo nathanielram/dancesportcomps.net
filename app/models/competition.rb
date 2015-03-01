@@ -51,7 +51,11 @@ class Competition < ActiveRecord::Base
     a[:US][:WDC] = "NDCA"
     a[:US][:WDSF] = "USA Dance"
 
-    (a[country.to_sym].key? comp_association.to_sym) ? a[country.to_sym][comp_association.to_sym] : comp_association
+    if a[country.to_sym].key? comp_association.to_sym
+      "#{a[country.to_sym][comp_association.to_sym]} (#{comp_association})"
+    else
+      comp_association
+    end
   end
 
   def website_full
@@ -69,7 +73,7 @@ class Competition < ActiveRecord::Base
   end
 
   def validate_dates
-    errors.add(:start_date, "is not a valid date") unless Date.valid_date?("start_date(1i)".to_i, "start_date(2i)".to_i, "start_date(3i)".to_i)
-    #errors.add(:end_date, "is not a valid date") if Date.valid_date?(:end_date)
+    errors.add(:start_date, "is not a valid date") if Date.parse("#{start_date}").to_s != "#{start_date}"
+    errors.add(:end_date, "is not a valid date") if Date.parse("#{end_date}").to_s != "#{end_date}"
   end
 end
