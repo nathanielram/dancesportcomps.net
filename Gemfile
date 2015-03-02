@@ -62,6 +62,8 @@ gem 'devise'
 gem 'foundation-rails'
 gem 'font-awesome-rails'
 
+gem 'friendly_id'
+
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller'

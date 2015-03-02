@@ -20,6 +20,9 @@
 #
 
 class Competition < ActiveRecord::Base
+  extend FriendlyId
+  friendly_id :slug_candidates, use: [:slugged, :finders]
+
   validates :name, :location_name, :address, :city, :country, :comp_association, presence: true
   #validates_format_of :website, :with => URI::regexp(%w(http https))
   validate :end_after_start#, :validate_dates
@@ -75,5 +78,12 @@ class Competition < ActiveRecord::Base
   def validate_dates
     errors.add(:start_date, "is not a valid date") if Date.parse("#{start_date}").to_s != "#{start_date}"
     errors.add(:end_date, "is not a valid date") if Date.parse("#{end_date}").to_s != "#{end_date}"
+  end
+
+  def slug_candidates
+    [
+      #:name,
+      [:name, start_date.split("-")[0]]
+    ]
   end
 end
