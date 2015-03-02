@@ -1,36 +1,38 @@
 class CompetitionsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :past, :future]
+  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
   # GET /competitions
   # GET /competitions.json
   def index
     # @competitions = Competition.all
-    results = Competition.where(["end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)]).order("start_date asc")
-    if search
-      @competitions &= results
-    else
-      @competitions = results
-    end
+    @competitions = Competition.where("end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)).order(start_date: :asc) 
+    search
     build_markers
+    @search_path = search_competitions_path
     render :index
   end
 
   def past
-    @competitions = Competition.where(["end_date < ?", Date.today]).order("start_date desc")
+    @competitions = Competition.where("end_date < ?", Date.today).order(start_date: :desc) 
+    search
     build_markers
+    @search_path = past_search_competitions_path
     render :index
   end
 
   def future
-    @competitions = Competition.where(["start_date > ?", (Date.today + 1.year)]).order("start_date asc")
+    @competitions = Competition.where("start_date > ?", (Date.today + 1.year)).order(start_date: :asc) 
+    search
     build_markers
+    @search_path = future_search_competitions_path
     render :index
   end
 
   def search 
-    unless params[:location].empty? || params[:distance].empty?
-      @competitions = Competition.near(params[:location], params[:distance].to_i)
+    search_results = [search_location, search_association].compact
+    if search_results.present?
+      search_results.each { |s| @competitions &= s }
     end
   end
 
@@ -101,6 +103,16 @@ class CompetitionsController < ApplicationController
         marker.infowindow comp.name
       end
     end    
+
+    def search_location
+      return if params[:location].blank? || params[:distance].blank?
+      Competition.near(params[:location], params[:distance].to_i)
+    end
+
+    def search_association
+      return if params[:comp_association].blank?
+      Competition.where("comp_association = ?", params[:comp_association]).order(start_date: :asc) 
+    end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params
