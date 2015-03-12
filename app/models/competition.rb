@@ -31,8 +31,6 @@ class Competition < ActiveRecord::Base
 
   after_validation :geocode, on: [:create, :update], if: :location_updated?
 
-  before_save :reset_slug, on: [:create, :update]
-
   def location_short
     [address, city, country].compact.join(", ")
   end
@@ -89,7 +87,8 @@ class Competition < ActiveRecord::Base
     ]
   end
 
-  def reset_slug
-    slug = nil
+  def should_generate_new_friendly_id?
+    name_changed?
   end
+
 end
