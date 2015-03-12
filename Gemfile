@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-
+ruby '2.1.5'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -26,7 +26,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 # Use Unicorn as the app server
 # gem 'unicorn'
-gem 'thin'
+# gem 'thin'
+gem 'puma'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -43,6 +44,7 @@ group :development, :test do
 end
 
 
+gem 'rails_12factor', group: :production #for heroku
 
 
 gem 'geocoder'
@@ -69,6 +71,7 @@ group :development do
   gem 'binding_of_caller'
   gem 'annotate'
   gem 'rubycritic', :require => false
+  gem 'bullet'
   #gem 'guard'
   #gem 'guard-annotate'
   #gem 'guard-bundler'
