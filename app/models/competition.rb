@@ -83,7 +83,7 @@ class Competition < ActiveRecord::Base
   def slug_candidates
     [
       #:name,
-      [:name, start_date.split("-")[0]]
+      [:name, start_date.year]
     ]
   end
 end
