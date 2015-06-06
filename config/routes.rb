@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: { sessions: 'users/sessions' }
+  devise_for :users, controllers: { sessions: 'users/sessions' }#, :skip => :registrations
   resources :competitions do
     get 'past', on: :collection
     get 'future', on: :collection

@@ -25,11 +25,13 @@ class Competition < ActiveRecord::Base
 
   validates :name, :location_name, :address, :city, :country, :comp_association, presence: true
   #validates_format_of :website, :with => URI::regexp(%w(http https))
-  validate :end_after_start#, :validate_dates
+  # validate :end_after_start#, :validate_dates
 
   geocoded_by :location_short
 
   after_validation :geocode, on: [:create, :update], if: :location_updated?
+
+  after_validation :set_end_date, on: [:create, :update]
 
   def location_short
     [address, city, country].compact.join(", ")
@@ -54,7 +56,7 @@ class Competition < ActiveRecord::Base
     a[:US][:WDC] = "NDCA"
     a[:US][:WDSF] = "USA Dance"
 
-    if a[country.to_sym].key? comp_association.to_sym
+    if !a[country.to_sym].nil? && (a[country.to_sym].key? comp_association.to_sym)
       "#{a[country.to_sym][comp_association.to_sym]} (#{comp_association})"
     else
       comp_association
@@ -69,6 +71,10 @@ class Competition < ActiveRecord::Base
   def location_updated?
     address_changed? || city_changed? || country_changed?
     # location_changed?
+  end
+
+  def set_end_date
+    self.end_date = start_date + num_days.to_i.days
   end
 
   def end_after_start

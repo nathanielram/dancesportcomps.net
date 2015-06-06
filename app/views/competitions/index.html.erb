@@ -1,11 +1,9 @@
-<p id="notice"><%= notice %></p>
-
 <div id="header">
-<%= render 'login_logout' %>
+  <%= render 'login_logout' %>
 
-<%= link_to "Past Competitions", past_competitions_path %>
-<%= link_to "This Year's Competitions", competitions_path %>
-<%= link_to "Future Competitions", future_competitions_path %>
+  <%= link_to "Past Competitions", past_competitions_path %>
+  <%= link_to "This Year's Competitions", competitions_path %>
+  <%= link_to "Future Competitions", future_competitions_path %>
 </div>
 
 <h1>Dancesport Competitions</h1>
@@ -41,7 +39,7 @@
         <td><%= competition.local_comp_association %></td>
         <td><%= competition.location_name %><br /><%= competition.location %></td>
         <td><%= link_to competition.website, competition.website_full, :target => '_blank' %></td>
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.admin? %>
         <td>
           <%= link_to 'Show', competition %> <br/>
           <%= link_to 'Edit', edit_competition_path(competition) %> <br />
