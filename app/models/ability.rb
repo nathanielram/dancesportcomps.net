@@ -4,14 +4,11 @@ class Ability
   def initialize(user)
 
     if user && user.admin?
-      can :read, :all                   # allow everyone to read everything
-      can :access, :rails_admin       # only allow admin users to access Rails Admin
-      can :dashboard                  # allow access to dashboard
+      can :access, :rails_admin       
+      can :dashboard    
+      #can :read, :all                           
       can :manage, :all            
     end
-
-    can :access, :rails_admin   # grant access to rails_admin
-    can :dashboard              # grant access to the dashboard
 
     # Define abilities for the passed in user here. For example:
     #
