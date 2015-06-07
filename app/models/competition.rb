@@ -17,6 +17,8 @@
 #  latitude         :float
 #  longitude        :float
 #  location_name    :string
+#  slug             :string
+#  num_days         :integer
 #
 
 class Competition < ActiveRecord::Base
