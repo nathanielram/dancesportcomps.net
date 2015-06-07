@@ -12,12 +12,7 @@
 //
 //= require jquery
 //= require turbolinks
-//= require jquery_ujs
-//= require jquery-ui
-//= require gmaps-auto-complete
-//= require underscore
-//= require gmaps/google
 //= require foundation
-//= require_tree .
+// require_tree .
 
 $(document).foundation();

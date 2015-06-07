@@ -19,6 +19,7 @@ class CompetitionsController < ApplicationController
     search
     build_markers
     @search_path = search_competitions_path
+    @config[:index] = true
     render :index
   end
 
@@ -27,6 +28,7 @@ class CompetitionsController < ApplicationController
     search
     build_markers
     @search_path = past_search_competitions_path
+    @config[:index] = true
     render :index
   end
 
@@ -35,6 +37,7 @@ class CompetitionsController < ApplicationController
     search
     build_markers
     @search_path = future_search_competitions_path
+    @config[:index] = true
     render :index
   end
 
