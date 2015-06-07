@@ -1,12 +1,13 @@
 class CompetitionsController < ApplicationController
-  #include Pundit
 
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
   #after_action :verify_authorized
 
-  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #load_and_authorize_resource
+  #skip_authorize_resource :only => :new
+  skip_authorization_check :unless => [:new, :edit, :create, :update, :destroy]
 
   # GET /competitions
   # GET /competitions.json
@@ -45,25 +46,21 @@ class CompetitionsController < ApplicationController
   # GET /competitions/1
   # GET /competitions/1.json
   def show
-    authorize @competition
   end
 
   # GET /competitions/new
   def new
     @competition = Competition.new
-    authorize @competition
   end
 
   # GET /competitions/1/edit
   def edit
-    authorize @competition
   end
 
   # POST /competitions
   # POST /competitions.json
   def create
     @competition = Competition.new(competition_params)
-    authorize @competition
     respond_to do |format|
       if @competition.save
         format.html { redirect_to @competition, notice: 'Competition was successfully created.' }
@@ -78,7 +75,6 @@ class CompetitionsController < ApplicationController
   # PATCH/PUT /competitions/1
   # PATCH/PUT /competitions/1.json
   def update
-    authorize @competition
     respond_to do |format|
       if @competition.update(competition_params)
         format.html { redirect_to @competition, notice: 'Competition was successfully updated.' }
@@ -93,7 +89,6 @@ class CompetitionsController < ApplicationController
   # DELETE /competitions/1
   # DELETE /competitions/1.json
   def destroy
-    authorize @competition
     @competition.destroy
     respond_to do |format|
       format.html { redirect_to competitions_url, notice: 'Competition was successfully destroyed.' }
