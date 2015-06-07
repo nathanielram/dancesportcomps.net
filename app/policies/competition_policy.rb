@@ -23,4 +23,5 @@ class CompetitionPolicy < ApplicationPolicy
   def edit?
     update?
   end
+
 end

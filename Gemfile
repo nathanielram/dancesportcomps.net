@@ -66,7 +66,8 @@ gem 'font-awesome-rails'
 
 gem 'friendly_id'
 
-gem 'pundit'
+#gem 'pundit'
+gem 'cancancan'
 
 gem 'rails_admin'
 

@@ -1,12 +1,12 @@
 class CompetitionsController < ApplicationController
-  include Pundit
+  #include Pundit
 
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
 
   #after_action :verify_authorized
 
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  #rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # GET /competitions
   # GET /competitions.json

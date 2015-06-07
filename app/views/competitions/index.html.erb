@@ -53,8 +53,8 @@
 
 <br>
 
-<% if user_signed_in? %>
-<%= link_to 'New Competition', new_competition_path %>
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to 'New Competition', new_competition_path %>
 <% end %>
 
 <%= javascript_tag do %>
