@@ -39,7 +39,7 @@
         <td><%= competition.local_comp_association %></td>
         <td><%= competition.location_name %><br /><%= competition.location %></td>
         <td><%= link_to competition.website, competition.website_full, :target => '_blank' %></td>
-        <% if user_signed_in? && current_user.admin? %>
+        <% if user_signed_in? && (can? :manage, competition) %>
         <td>
           <%= link_to 'Show', competition %> <br/>
           <%= link_to 'Edit', edit_competition_path(competition) %> <br />
@@ -53,7 +53,7 @@
 
 <br>
 
-<% if user_signed_in? && current_user.admin? %>
+<% if user_signed_in? && (can? :create, Competition) %>
   <%= link_to 'New Competition', new_competition_path %>
 <% end %>
 

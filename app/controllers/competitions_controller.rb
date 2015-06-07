@@ -5,8 +5,8 @@ class CompetitionsController < ApplicationController
 
   #after_action :verify_authorized
 
-  #load_and_authorize_resource
-  #skip_authorize_resource :only => :new
+  load_and_authorize_resource
+  skip_authorize_resource :unless => [:new, :edit, :create, :update, :destroy]
   skip_authorization_check :unless => [:new, :edit, :create, :update, :destroy]
 
   # GET /competitions
