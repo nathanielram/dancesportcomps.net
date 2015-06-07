@@ -85,3 +85,18 @@
 
   });
 <% end %>
+
+<%= javascript_tag do %>
+  $(function() {
+    var completer;
+
+    completer = new GmapsCompleter({
+      inputField: '#location',
+      errorField: '#gmaps-error'
+    });
+
+    completer.autoCompleteInit(/*{
+      country: "us"
+    }*/);
+  });
+<% end %>

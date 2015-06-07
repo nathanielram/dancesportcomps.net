@@ -15,6 +15,12 @@
  *= require font-awesome
  * require_tree .
  *= require_tree ./competitions
+ *= require jquery-ui
  */
  
 @import "normalize";
+
+
+.ui-menu .ui-menu-item {
+	font-size: 12px;
+}
