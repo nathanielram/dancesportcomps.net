@@ -11,7 +11,9 @@ class Ability
     if user && user.admin?
       can :access, :rails_admin       
       can :dashboard    
-      can :manage, :all      
+      can :manage, :all
+    else
+      can :guest, Competition      
     end
 
     # Define abilities for the passed in user here. For example:
