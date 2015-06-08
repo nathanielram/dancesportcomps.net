@@ -11,25 +11,27 @@
     </div>
   <% end %>
 
-  <%= f.text_field :name, placeholder: "Your name here" %>
+  <%= f.input :name, label: "Competition name" %>
 
-  <%= f.input :start_date, label_html: { class: 'datetimepicker' } %> <%# f.date_select %>
+  <%= f.input :start_date, label: "Start Date", input_html: { class: 'datetimepicker' } %> <%# f.date_select %>
 
-  <%= f.input :num_days, collection: 0..30, prompt: "Number of days", label: "Number of days", selected: @competition.num_days %>
+  <%= f.input :start_date, as: :date, label: "Start Date" %> <%# f.date_select %>
 
-  <%= f.select :num_days, options_for_select(0..30), prompt: "Number of days" %>
+  <%= f.input :num_days, collection: 0..30, label: "Number of days", selected: @competition.num_days %>
 
-  <%= f.select :comp_association, ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true, label: "Competition association" %>
+  <%# f.select :num_days, options_for_select(0..30), prompt: "Number of days" %>
 
-  <%= f.text_field :location_name, placeholder: "Location name here" %>
+  <%= f.input :comp_association, collection: ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true, label: "Competition association" %>
 
-  <%= f.text_field :address, placeholder: "Address here" %>
+  <%= f.input :location_name, placeholder: "Location name here", label: "Location name" %>
 
-  <%= f.text_field :city, placeholder: "City here" %>
+  <%= f.input :address, placeholder: "Address here" %>
+
+  <%= f.input :city, placeholder: "City here" %>
 
   <%= f.country_select :country, priority_countries: ["CA", "US"], include_blank: true %>
 
-  <%= f.text_field :website, placeholder: "Website here" %>
+  <%= f.input :website, placeholder: "Website here" %>
 
   <%= f.submit %>
  
