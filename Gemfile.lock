@@ -278,6 +278,9 @@ GEM
       json (~> 1.7, >= 1.7.7)
       rdoc (~> 4.0)
     sexp_processor (4.4.5)
+    simple_form (3.1.0)
+      actionpack (~> 4.0)
+      activemodel (~> 4.0)
     slop (3.6.0)
     sort_alphabetical (1.0.1)
       unicode_utils (>= 1.2.2)
@@ -368,6 +371,7 @@ DEPENDENCIES
   rubycritic
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  simple_form
   spring
   time_will_tell
   turbolinks

@@ -1,4 +1,4 @@
-<%= form_for(@competition) do |f| %>
+<%= simple_form_for(@competition) do |f| %>
   <% if @competition.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@competition.errors.count, "error") %> prohibited this competition from being saved:</h2>
@@ -11,45 +11,24 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
+  <%= f.text_field :name, placeholder: "Your name here" %>
 
-  <div class="field">
-    <%= f.label :start_date %><br>
-    <%= f.input :start_date, :as => :date_picker %> <%# f.date_select %>
-  </div>
+  <%= f.input :start_date, :as => :date_picker, label: "Start Date" %> <%# f.date_select %>
 
-  <div class="field">
-    <%= f.label :num_days %><br>
-    <%= f.select :num_days, options_for_select(0..30), selected: @competition.num_days %>
-  </div>
-  <div class="field">
-    <%= f.label :comp_association %><br>
-    <%= f.select :comp_association, ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true %>
-  </div>
-    <div class="field">
-    <%= f.label :location_name %><br>
-    <%= f.text_field :location_name %>
-  </div>
-  <div class="field">
-    <%= f.label :address %><br>
-    <%= f.text_field :address %>
-  </div>
-  <div class="field">
-    <%= f.label :city %><br>
-    <%= f.text_field :city %>
-  </div>
-  <div class="field">
-    <%= f.label :country %><br>
-    <%= f.country_select :country, priority_countries: ["CA", "US"], include_blank: true %>
-  </div>
-  <div class="field">
-    <%= f.label :website %><br>
-    <%= f.text_field :website %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.select :num_days, collection: 0..30, selected: @competition.num_days, label: "Number of days" %>
+
+  <%= f.select :comp_association, ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true, label: "Competition association" %>
+
+  <%= f.text_field :location_name, placeholder: "Location name here" %>
+
+  <%= f.text_field :address, placeholder: "Address here" %>
+
+  <%= f.text_field :city, placeholder: "City here" %>
+
+  <%= f.country_select :country, priority_countries: ["CA", "US"], include_blank: true %>
+
+  <%= f.text_field :website, placeholder: "Website here" %>
+
+  <%= f.submit %>
+ 
 <% end %>
