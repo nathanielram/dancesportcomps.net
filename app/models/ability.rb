@@ -5,6 +5,9 @@ class Ability
 
     alias_action :index, :read, :past, :future, :search, :show, :to => :guest
 
+    can :access, :rails_admin       
+    can :dashboard   
+
     if user && user.admin?
       can :access, :rails_admin       
       can :dashboard    
