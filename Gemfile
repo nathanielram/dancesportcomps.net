@@ -60,6 +60,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 
 #gem 'jquery-ui-rails'
 #gem 'gmaps-autocomplete-rails'
+gem 'twitter-typeahead-rails'
 gem 'typeahead-addresspicker-rails'
 
 gem 'foundation-datetimepicker-rails'
