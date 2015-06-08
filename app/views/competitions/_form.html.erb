@@ -15,10 +15,12 @@
     <%= f.label :name %><br>
     <%= f.text_field :name %>
   </div>
+
   <div class="field">
     <%= f.label :start_date %><br>
-    <%= f.date_select :start_date %>
+    <%= f.input :start_date, :as => :date_picker %> <%# f.date_select %>
   </div>
+
   <div class="field">
     <%= f.label :num_days %><br>
     <%= f.select :num_days, options_for_select(0..30), selected: @competition.num_days %>

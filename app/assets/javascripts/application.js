@@ -14,6 +14,7 @@
 //= require turbolinks
 //= require foundation
 //= require index
+//= require datepicker
 // require_tree .
 
 $(document).foundation();

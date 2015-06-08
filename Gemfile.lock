@@ -6,6 +6,15 @@ GIT
       countries (>= 0.9.3, < 0.10.0)
       sort_alphabetical (~> 1.0)
 
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -166,6 +175,8 @@ GEM
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
+    momentjs-rails (2.10.2)
+      railties (>= 3.1)
     multi_json (1.10.1)
     multi_xml (0.5.5)
     nested_form (0.3.2)
@@ -326,6 +337,7 @@ DEPENDENCIES
   cancancan
   coffee-rails (~> 4.1.0)
   country_select!
+  datetimepicker-rails!
   devise
   errorapp_notifier
   font-awesome-rails

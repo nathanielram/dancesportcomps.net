@@ -59,6 +59,8 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'jquery-ui-rails'
 gem 'gmaps-autocomplete-rails'
 
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+
 
 #gem 'date_validator'
 #gem 'jc-validates_timeliness'
