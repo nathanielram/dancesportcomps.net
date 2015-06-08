@@ -13,9 +13,9 @@
 
   <%= f.text_field :name, placeholder: "Your name here" %>
 
-  <%= f.input :start_date, label_html: { class: 'datetimepicker' }, label: "Start Date" %> <%# f.date_select %>
+  <%= f.input :start_date, label_html: { class: 'datetimepicker' } %> <%# f.date_select %>
 
-  <%= f.select :num_days, collection: 0..30, selected: @competition.num_days, label: "Number of days" %>
+  <%= f.select :num_days, collection: 0..30, prompt: "Number of days" %>
 
   <%= f.select :comp_association, ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true, label: "Competition association" %>
 
