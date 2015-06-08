@@ -13,7 +13,8 @@ class Ability
       can :dashboard    
       can :manage, :all
     else
-      can :guest, Competition      
+      can :read, :all
+      #can :guest, Competition      
     end
 
     # Define abilities for the passed in user here. For example:
