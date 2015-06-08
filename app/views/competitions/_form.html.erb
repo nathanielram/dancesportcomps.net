@@ -15,7 +15,9 @@
 
   <%= f.input :start_date, label_html: { class: 'datetimepicker' } %> <%# f.date_select %>
 
-  <%= f.select :num_days, collection: 0..30, prompt: "Number of days" %>
+  <%= f.input :num_days, collection: 0..30, prompt: "Number of days", label: "Number of days", label_method: :num_days, selected: @competition.num_days %>
+
+  <%= f.select :num_days, options_for_select(0..30), prompt: "Number of days" %>
 
   <%= f.select :comp_association, ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true, label: "Competition association" %>
 
