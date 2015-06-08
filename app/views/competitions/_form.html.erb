@@ -11,11 +11,11 @@
     </div>
   <% end %>
 
-  <%= f.input :name, label: "Competition name" %>
+  <%= f.input :name, placeholder: "Really Amazing Dancesport Competition", label: "Competition Name" %>
 
-  <%= f.input :start_date, label: "Start Date", input_html: { class: 'datetimepicker' } %> <%# f.date_select %>
+  <%# f.input :start_date, label: "Start Date", input_html: { class: 'datetimepicker' } %> <%# f.date_select %>
 
-  <%= f.input :start_date, as: :date, label: "Start Date" %> <%# f.date_select %>
+  <%= f.input :start_date, as: :date, html5: true %> <%# f.date_select %>
 
   <%= f.input :num_days, collection: 0..30, label: "Number of days", selected: @competition.num_days %>
 
@@ -23,15 +23,15 @@
 
   <%= f.input :comp_association, collection: ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true, label: "Competition association" %>
 
-  <%= f.input :location_name, placeholder: "Location name here", label: "Location name" %>
+  <%= f.input :location_name, placeholder: "Mariott Really Fancy" %>
 
-  <%= f.input :address, placeholder: "Address here" %>
+  <%= f.input :address, placeholder: "123 Main Street" %>
 
-  <%= f.input :city, placeholder: "City here" %>
+  <%= f.input :city, placeholder: "New York City, NY" %>
 
-  <%= f.country_select :country, priority_countries: ["CA", "US"], include_blank: true %>
+  <%= f.country_select :country, priority_countries: ["US", "CA"], include_blank: true %>
 
-  <%= f.input :website, placeholder: "Website here" %>
+  <%= f.input :website, placeholder: "http://google.com" %>
 
   <%= f.submit %>
  
