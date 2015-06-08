@@ -3,9 +3,8 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  check_authorization :unless => :devise_controller?
+  check_authorization :unless => :devise_or_rails_admin?
   #check_authorization :unless => :rails_admin_controller?
-  check_authorization :unless => :is_rails_admin_controller?
 
   rescue_from CanCan::AccessDenied do |exception|
   	#Rails.logger.debug "Access denied on #{exception.action} #{exception.subject.inspect}"
@@ -14,9 +13,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  def devise_or_rails_admin?
+  	devise_controller? || is_rails_admin_controller? # rails_admin_controller?
+  end
+
   # hack fix -- https://github.com/sferik/rails_admin/issues/2268
   def is_rails_admin_controller?
-  	Rails.logger.debug "#{self.class.to_s} #{(self.class.to_s =~ /RailsAdmin::/)}"
 	(self.class.to_s =~ /RailsAdmin::/) == 0
   end
 
