@@ -15,16 +15,11 @@
  *= require font-awesome
  * require_tree .
  *= require_tree ./competitions
- *= require jquery-ui
  *= require bootstrap-datetimepicker.min
  */
  
 @import "normalize";
 
-
-.ui-menu .ui-menu-item {
-	font-size: 12px;
-}
 
 #map img { 
   max-width: none;

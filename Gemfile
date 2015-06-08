@@ -56,8 +56,9 @@ gem 'underscore-rails'
 gem 'gmaps4rails'
 gem 'country_select', github: 'stefanpenner/country_select'
 
-gem 'jquery-ui-rails'
-gem 'gmaps-autocomplete-rails'
+#gem 'jquery-ui-rails'
+#gem 'gmaps-autocomplete-rails'
+gem 'typeahead-addresspicker-rails'
 
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 

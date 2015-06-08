@@ -88,15 +88,11 @@
 
 <%= javascript_tag do %>
   $(function() {
-    var completer;
+    var addressPicker = new AddressPicker();
 
-    completer = new GmapsCompleter({
-      inputField: '#location',
-      errorField: '#gmaps-error'
+    $('#location').typeahead(null, {
+      displayKey: 'description',
+      source: addressPicker.ttAdapter()
     });
-
-    completer.autoCompleteInit(/*{
-      country: "us"
-    }*/);
   });
 <% end %>

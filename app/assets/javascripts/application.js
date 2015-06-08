@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require turbolinks
+//= require jquery_ujs
+//= require underscore
+//= require gmaps/google
 //= require foundation
-//= require index
-//= require datepicker
-// require_tree .
+//= require typeahead-addresspicker.min
+//= require_tree .
 
 $(document).foundation();
