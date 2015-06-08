@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   private
   # hack fix -- https://github.com/sferik/rails_admin/issues/2268
   def is_rails_admin_controller?
+  	Rails.logger.debug "#{self.class.to_s} #{(self.class.to_s =~ /RailsAdmin::/)}"
 	(self.class.to_s =~ /RailsAdmin::/) == 0
   end
 
