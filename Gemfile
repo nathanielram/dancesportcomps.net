@@ -62,7 +62,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 #gem 'gmaps-autocomplete-rails'
 gem 'typeahead-addresspicker-rails'
 
-gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
+gem 'foundation-datetimepicker-rails'
 
 
 #gem 'date_validator'

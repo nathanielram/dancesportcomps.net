@@ -17,6 +17,7 @@
 //= require gmaps/google
 //= require foundation
 //= require typeahead-addresspicker.min
+//= require foundation-datetimepicker
 //= require_tree .
 
 $(document).foundation();

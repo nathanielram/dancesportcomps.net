@@ -13,9 +13,9 @@
  *= require_self
  *= require foundation
  *= require font-awesome
+ *= require foundation_and_overrides
  * require_tree .
  *= require_tree ./competitions
- *= require bootstrap-datetimepicker.min
  */
  
 @import "normalize";
