@@ -26,14 +26,18 @@ class Competition < ActiveRecord::Base
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
   validates :name, :location_name, :address, :city, :country, :comp_association, presence: true
-  #validates_format_of :website, :with => URI::regexp(%w(http https))
-  # validate :end_after_start#, :validate_dates
 
   geocoded_by :location_short
 
   after_validation :geocode, on: [:create, :update], if: :location_updated?
 
-  after_validation :set_end_date, on: [:create, :update]
+  def num_days
+    (end_date.to_date - start_date.to_date).to_i
+  end
+
+  def num_days=(num_days)
+    self.end_date = start_date + num_days.to_i.days
+  end
 
   def location_short
     [address, city, country].compact.join(", ")
@@ -73,19 +77,6 @@ class Competition < ActiveRecord::Base
   def location_updated?
     address_changed? || city_changed? || country_changed?
     # location_changed?
-  end
-
-  def set_end_date
-    self.end_date = start_date + num_days.to_i.days
-  end
-
-  def end_after_start
-    errors.add(:end_date, "must be after the start date") if Date.parse("#{end_date}") < Date.parse("#{start_date}")
-  end
-
-  def validate_dates
-    errors.add(:start_date, "is not a valid date") if Date.parse("#{start_date}").to_s != "#{start_date}"
-    errors.add(:end_date, "is not a valid date") if Date.parse("#{end_date}").to_s != "#{end_date}"
   end
 
   def slug_candidates

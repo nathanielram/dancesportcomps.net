@@ -29,7 +29,9 @@
 
   <%= f.input :city, placeholder: "New York City, NY" %>
 
-  <%= f.country_select :country, priority_countries: ["US", "CA"], include_blank: true %>
+  <%# f.country_select :country, priority_countries: ["US", "CA"], include_blank: true %>
+
+  <%= f.input :country, as: :country, priority_countries: ["US", "CA"], include_blank: true %>
 
   <%= f.input :website, placeholder: "http://google.com" %>
 
