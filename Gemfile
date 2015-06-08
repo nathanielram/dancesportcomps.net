@@ -90,3 +90,11 @@ group :development do
   #gem 'guard-migrate'
   #gem 'guard-rubycritic'
 end
+
+
+gem 'airbrake'
+gem 'errorapp_notifier'
+gem 'informant-rails'
+gem 'newrelic_rpm'
+gem 'raygun4ruby'
+gem 'rollbar'
