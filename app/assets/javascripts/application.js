@@ -13,6 +13,7 @@
 //= require jquery
 //= require turbolinks
 //= require foundation
+//= require index
 // require_tree .
 
 $(document).foundation();

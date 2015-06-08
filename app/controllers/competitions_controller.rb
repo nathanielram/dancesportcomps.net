@@ -2,7 +2,6 @@ class CompetitionsController < ApplicationController
 
   before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
   before_action :set_competition, only: [:show, :edit, :update, :destroy]
-  before_action :set_index, only: [:index, :past, :future]
 
   #after_action :verify_authorized
 
@@ -103,10 +102,6 @@ class CompetitionsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_competition
       @competition = Competition.find(params[:id])
-    end
-
-    def set_index
-      @config[:index] = true
     end
 
     def build_markers
