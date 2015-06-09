@@ -124,7 +124,7 @@ class CompetitionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params
-      params.require(:competition).permit(:name, :comp_association, :start_date, :num_days, :location_name, :address, :city, :country, :website, :latitude, :longitude, :distance)
+      params.require(:competition).permit(:name, :comp_association, :start_date, :end_date, :num_days, :location_name, :address, :city, :country, :website, :latitude, :longitude, :distance)
     end
 
     def user_not_authorized

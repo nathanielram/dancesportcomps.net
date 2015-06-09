@@ -17,7 +17,7 @@
 
   <%= f.input :start_date, as: :date, html5: true %> <%# f.date_select %>
 
-  <%= f.input :num_days, collection: 0..30, label: "Number of days", selected: @competition.num_days %>
+  <%= f.input :num_days, collection: 1..30, label: "Number of days", selected: @competition.num_days %>
 
   <%# f.select :num_days, options_for_select(0..30), prompt: "Number of days" %>
 
@@ -31,7 +31,7 @@
 
   <%# f.country_select :country, priority_countries: ["US", "CA"], include_blank: true %>
 
-  <%= f.input :country, as: :country, priority_countries: ["US", "CA"], include_blank: true %>
+  <%= f.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
 
   <%= f.input :website, placeholder: "http://google.com" %>
 
