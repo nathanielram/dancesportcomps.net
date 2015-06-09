@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150607201122) do
+ActiveRecord::Schema.define(version: 20150608224404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,7 +31,6 @@ ActiveRecord::Schema.define(version: 20150607201122) do
     t.float    "longitude"
     t.string   "location_name"
     t.string   "slug"
-    t.integer  "num_days"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

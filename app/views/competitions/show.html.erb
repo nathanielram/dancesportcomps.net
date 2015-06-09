@@ -20,15 +20,11 @@
 </p>
 
 <p>
-  <strong>Location:</strong>
-</p>
-
-<p>
   <strong>Website:</strong>
   <%= link_to @competition.website, @competition.website_full, :target => '_blank' %>
 </p>
 
-<% if user_signed_in? && (can? :manage, competition) %>
+<% if user_signed_in? && (can? :manage, @competition) %>
 <%= link_to 'Edit', edit_competition_path(@competition) %> |
 <% end %>
 <%= link_to 'Back', competitions_path %>

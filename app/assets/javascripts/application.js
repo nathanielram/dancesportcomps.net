@@ -18,7 +18,7 @@
 //= require foundation
 //= require twitter/typeahead.min
 //= require typeahead-addresspicker.min
-//= require foundation-datetimepicker
+// require foundation-datetimepicker
 //= require_tree .
 
 $(document).foundation();

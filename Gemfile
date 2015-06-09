@@ -63,11 +63,7 @@ gem 'country_select', github: 'stefanpenner/country_select'
 gem 'twitter-typeahead-rails'
 gem 'typeahead-addresspicker-rails'
 
-gem 'foundation-datetimepicker-rails'
-
-
-#gem 'date_validator'
-#gem 'jc-validates_timeliness'
+#gem 'foundation-datetimepicker-rails'
 
 gem 'time_will_tell'
 

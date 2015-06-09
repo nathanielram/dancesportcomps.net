@@ -32,8 +32,12 @@ class Competition < ActiveRecord::Base
   after_validation :geocode, on: [:create, :update], if: :location_updated?
 
   def num_days
-    1
-    #unless self.end_date.nil? ((self.end_date.to_date - start_date.to_date).to_i + 1) : 1
+    if self.end_date.nil? 
+      1
+    else
+      ((self.end_date.to_date - start_date.to_date).to_i + 1) 
+    end
+    #else 1 end
   end
 
   def num_days=(num_days)
