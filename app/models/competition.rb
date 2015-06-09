@@ -25,7 +25,7 @@ class Competition < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
-  validates :name, :location_name, :address, :city, :country, :comp_association, presence: true
+  validates :name, :location_name, :address, :city, :country, :comp_association, :website, :num_days, :start_date, presence: true
 
   geocoded_by :location_short
 

@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: { sessions: 'users/sessions' }#, :skip => :registrations
-  resources :competitions do
+  resources :competitions do #, except: :show do
     get 'past', on: :collection
     get 'future', on: :collection
     post 'search', to: 'competitions#index', on: :collection
@@ -10,6 +10,9 @@ Rails.application.routes.draw do
   end
 
   root 'competitions#index'
+
+  #get '/:id', to: 'competitions#show'
+  
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
