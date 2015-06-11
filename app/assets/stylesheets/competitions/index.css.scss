@@ -20,8 +20,9 @@
 	@include grid-row();
 	.search_input {
 		@include grid-column(12);
-		padding-top: rem-calc(24);
-		padding-bottom: rem-calc(24);
+		//padding-top: rem-calc(24);
+		//padding-bottom: rem-calc(24);
+		height: rem-calc(51);
 
 		@media #{$medium-up} {
 		    @include grid-column(2);
