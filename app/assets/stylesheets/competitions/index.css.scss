@@ -47,11 +47,15 @@
 	.button {
 		@include grid-column(
 			$center: true,
-			$columns: 6
+			$columns: 6,
+			$offset: 3
 		);
 
 		@media #{$medium-up} {
-		    @include grid-column(2);
+		    @include grid-column(
+			    $columns: 2,
+				$offset: 0
+			);
 		}
 	}
 }
