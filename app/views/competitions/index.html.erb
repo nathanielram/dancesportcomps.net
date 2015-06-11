@@ -12,10 +12,10 @@
   <%= text_field_tag :location, params[:location], placeholder: "Where do you live?", class: "search_input location" %>
   <%= text_field_tag :distance, params[:distance], placeholder: "How far away?", class: "search_input distance" %>
   <%= select_tag :comp_association, options_for_select(['WDC', 'WDSF', 'Collegiate', 'Independent']), include_blank: true, class: "search_select association" %>
-  <%= submit_tag "Find", :class => "button" %>
+  <%= submit_tag "Find", class: "button" %>
 <% end %>
 
-<div class="flex-video map-container">
+<div class="map-container"> <%# flex-video %>
   <div id="map" class="map"></div>
 </div>
 

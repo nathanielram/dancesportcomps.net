@@ -46,9 +46,13 @@
 	}
 	.button {
 		@include grid-column(
-			$columns:2,
-   			$last-column:true
+			$columns: 6,
+			$center: true
 		);
+
+		@media #{$medium-up} {
+		    @include grid-column(2);
+		}
 	}
 }
 
