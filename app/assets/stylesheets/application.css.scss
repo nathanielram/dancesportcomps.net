@@ -11,20 +11,12 @@
  * file per style scope.
  *
  *= require_self
+ *= require normalize
  *= require foundation
- *= require font-awesome
  *= require foundation_and_overrides
- *= require addresspicker
+ *= require font-awesome
+ *= require_tree ./libs
  * require_tree .
  *= require_tree ./competitions
  */
  
-@import "normalize";
-
-
-#map img { 
-  max-width: none;
-}
-#map label { 
-  width: auto; display:inline; 
-} 

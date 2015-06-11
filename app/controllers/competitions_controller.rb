@@ -6,10 +6,8 @@ class CompetitionsController < ApplicationController
   #after_action :verify_authorized
 
   load_and_authorize_resource
-  # not sure what the difference is?
-  #skip_authorize_resource :unless => [:new, :edit, :create, :update, :destroy]
-  #skip_authorization_check :unless => [:new, :edit, :create, :update, :destroy]
-
+  #skip_load_and_authorize_resource only: [:past, :future]
+  #skip_authorization_check only: [:past, :future]
 
   # GET /competitions
   # GET /competitions.json

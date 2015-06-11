@@ -9,7 +9,6 @@
   <meta name="description" content="">
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
-  <%= stylesheet_link_tag	'print', media: 'print' %>
   <%= stylesheet_link_tag	'//fonts.googleapis.com/css?family=Architects+Daughter' %>
 
   <%= javascript_include_tag '//maps.google.com/maps/api/js?sensor=false&libraries=geometry,places' %>
@@ -21,9 +20,19 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% flash.each do |key, value| %>
-  <div class="alert alert-<%= key %>"><%= value %></div>
-<% end %>
-<%= yield %>
+  <%= render 'shared/navigation' %>
+
+  <div class="alerts">
+    <% flash.each do |name, msg| %>
+      <div class="alert alert-box radius #{name}"><%= msg %></div>
+    <% end %>
+  </div>
+
+  <div class="container">
+    <div class="content">
+      <%= yield %>
+    </div>
+  </div>
+
 </body>
 </html>

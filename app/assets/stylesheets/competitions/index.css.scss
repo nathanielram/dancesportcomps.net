@@ -1,0 +1,93 @@
+@import "foundation/components/grid";
+
+//$row-width: rem-calc(100000);
+
+.alerts {
+	@include grid-row();
+	.alert {
+		@include grid-column(12);
+	}
+}
+
+.container {
+	@include grid-row();
+	.content {
+		@include grid-column(12);
+	}
+}
+
+.search_form {
+	@include grid-row();
+	.search_input {
+		@include grid-column(12);
+		padding-top: rem-calc(24);
+		padding-bottom: rem-calc(24);
+
+		@media #{$medium-up} {
+		    @include grid-column(2);
+		}
+	}
+	.twitter-typeahead {
+		@include grid-column(12);
+		float: left !important;
+		padding: 0 !important;
+
+		@media #{$medium-up} {
+		    @include grid-column(6);
+		}
+	}
+	.search_select {
+		@include grid-column(12);
+		height: rem-calc(51);
+
+		@media #{$medium-up} {
+		    @include grid-column(2);
+		}
+	}
+	.button {
+		@include grid-column(
+			$columns:2,
+   			$last-column:true
+		);
+	}
+}
+
+.map-container {
+	@include grid-row();
+	.map {
+		@include grid-column(12);
+	}
+}
+
+#map {
+	height: rem-calc(600);
+
+	img { 
+	  max-width: none;
+	}
+	label { 
+	  width: auto; display:inline; 
+	} 
+}
+
+.table-container {
+	@include grid-row();
+
+	.table {
+		@include grid-column(12);
+		width: 100%;
+		border: none;
+
+		/*thead {
+			background-color: red;
+			& > tr {
+				background: inherit;
+			}
+		}*/
+
+	}
+}
+
+.table-container {
+  //@include tablesaw-stack( 50em );
+}

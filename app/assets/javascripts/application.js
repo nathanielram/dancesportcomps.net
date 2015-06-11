@@ -12,13 +12,15 @@
 //
 //= require jquery
 // require turbolinks
+//= require foundation
 //= require jquery_ujs
 //= require underscore
 //= require gmaps/google
-//= require foundation
 //= require twitter/typeahead.min
 //= require typeahead-addresspicker.min
-// require foundation-datetimepicker
-//= require_tree .
+//= require_tree ./libs
+// require_tree .
+//= require_self
 
 $(document).foundation();
+

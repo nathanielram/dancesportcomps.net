@@ -8,48 +8,49 @@
 
 <h1>Dancesport Competitions</h1>
 
-<%= form_tag(@search_path, :method => :post) do %>
-  <%= text_field_tag :location, params[:location], placeholder: "Where do you live?" %>
-  <%= text_field_tag :distance, params[:distance], placeholder: "50-100km is fairly local, 500km is a good distance" %>
-  <%= select_tag :comp_association, options_for_select(['WDC', 'WDSF', 'Collegiate', 'Independent']), include_blank: true %>
-  <%= submit_tag "Find" %>
+<%= form_tag(@search_path, :method => :post, :class => 'search_form') do %>
+  <%= text_field_tag :location, params[:location], placeholder: "Where do you live?", class: "search_input location" %>
+  <%= text_field_tag :distance, params[:distance], placeholder: "How far away?", class: "search_input distance" %>
+  <%= select_tag :comp_association, options_for_select(['WDC', 'WDSF', 'Collegiate', 'Independent']), include_blank: true, class: "search_select association" %>
+  <%= submit_tag "Find", :class => "button" %>
 <% end %>
 
-<div style='width: 800px;'>
-  <div id="map" style='width: 800px; height: 400px;'></div>
+<div class="flex-video map-container">
+  <div id="map" class="map"></div>
 </div>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Date</th>
-      <th>Association</th>
-      <th>Location</th>
-      <th>Website</th>
-      <th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @competitions.each do |competition| %>
+<div class="table-container">
+  <table class="table tablesaw tablesaw-stack" data-tablesaw-mode="stack">
+    <thead>
       <tr>
-        <td><%= competition.name %></td>
-        <td><%= date_range competition.start_date, competition.end_date, format: :long %></td>
-        <td><%= competition.local_comp_association %></td>
-        <td><%= competition.location_name %><br /><%= competition.location %></td>
-        <td><%= link_to competition.website, competition.website_full, :target => '_blank' %></td>
-        <% if user_signed_in? && (can? :manage, competition) %>
-        <td>
-          <%= link_to 'Show', competition %> <br/>
-          <%= link_to 'Edit', edit_competition_path(competition) %> <br />
-          <%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %>
-        </td>
-        <% end %>
+        <th>Name</th>
+        <th>Date</th>
+        <th>Association</th>
+        <th>Location</th>
+        <th>Website</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @competitions.each do |competition| %>
+        <tr>
+          <td><%= link_to competition.name, competition %> <%# competition.name %></td>
+          <td><%= date_range competition.start_date, competition.end_date, format: :long %></td>
+          <td><%= competition.local_comp_association %></td>
+          <td><%= competition.location_name %> <br> <%= competition.location %></td>
+          <td><%= link_to competition.website, competition.website_full, :target => '_blank' %></td>
+          <% if user_signed_in? && (can? :manage, competition) %>
+          <td>
+            <%= link_to 'Show', competition %> <br/>
+            <%= link_to 'Edit', edit_competition_path(competition) %> <br />
+            <%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br>
 
@@ -94,5 +95,13 @@
       displayKey: 'description',
       source: addressPicker.ttAdapter()
     });
+  });
+<% end %>
+
+
+<%= javascript_tag do %>
+  $(function() {
+      $('#table').cardtable({hideOriginal:true});
+      //cardtable and stacktable
   });
 <% end %>
