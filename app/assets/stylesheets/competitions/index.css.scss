@@ -46,8 +46,8 @@
 	}
 	.button {
 		@include grid-column(
-			$columns: 6,
-			$center: true
+			$center: true,
+			$columns: 6
 		);
 
 		@media #{$medium-up} {
@@ -64,7 +64,7 @@
 }
 
 #map {
-	height: rem-calc(600);
+	height: rem-calc(500);
 
 	img { 
 	  max-width: none;
