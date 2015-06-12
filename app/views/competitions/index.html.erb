@@ -15,6 +15,10 @@
   <%= submit_tag "Find", class: "button" %>
 <% end %>
 
+<% if user_signed_in? && (can? :create, Competition) %>
+  <%= link_to 'New Competition', new_competition_path %>
+<% end %>
+
 <div class="map-container">
   <div id="map" class="map"></div>
 </div>
@@ -54,10 +58,6 @@
 
 <br>
 
-<% if user_signed_in? && (can? :create, Competition) %>
-  <%= link_to 'New Competition', new_competition_path %>
-<% end %>
-
 <%= javascript_tag do %>
   $(function() {
 
@@ -67,7 +67,7 @@
     ];
 
 
-    handler = Gmaps.build('Google');
+    handler = Gmaps.build('Google', { markers: { maxRandomDistance: 5 } });
     handler.buildMap({ 
       internal: {id: 'map'},
       provider: {
@@ -98,10 +98,3 @@
   });
 <% end %>
 
-
-<%= javascript_tag do %>
-  $(function() {
-      $('#table').cardtable({hideOriginal:true});
-      //cardtable and stacktable
-  });
-<% end %>

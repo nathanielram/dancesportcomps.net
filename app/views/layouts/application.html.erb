@@ -24,7 +24,7 @@
 
   <div class="alerts">
     <% flash.each do |name, msg| %>
-      <div class="alert alert-box radius #{name}"><%= msg %></div>
+      <div class="alert-box radius <%= name %> <%= name.to_s == 'notice' ? 'success' : '' %>"><%= msg %></div>
     <% end %>
   </div>
 

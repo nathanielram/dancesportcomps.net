@@ -63,9 +63,11 @@ class CompetitionsController < ApplicationController
     @competition = Competition.new(competition_params)
     respond_to do |format|
       if @competition.save
-        format.html { redirect_to @competition, notice: 'Competition was successfully created.' }
+        flash[:success] = "Competition was successfully created."
+        format.html { redirect_to @competition }
         format.json { render :show, status: :created, location: @competition }
       else
+        flash[:alert] = 'There was a problem creating the Competition.'
         format.html { render :new }
         format.json { render json: @competition.errors, status: :unprocessable_entity }
       end
@@ -77,9 +79,11 @@ class CompetitionsController < ApplicationController
   def update
     respond_to do |format|
       if @competition.update(competition_params)
-        format.html { redirect_to @competition, notice: 'Competition was successfully updated.' }
+        flash[:success] = "Competition was successfully updated."
+        format.html { redirect_to @competition }
         format.json { render :show, status: :ok, location: @competition }
       else
+        flash[:alert] = 'There was a problem updating the Competition.'
         format.html { render :edit }
         format.json { render json: @competition.errors, status: :unprocessable_entity }
       end
@@ -91,7 +95,8 @@ class CompetitionsController < ApplicationController
   def destroy
     @competition.destroy
     respond_to do |format|
-      format.html { redirect_to competitions_url, notice: 'Competition was successfully destroyed.' }
+      flash[:success] = "Competition was successfully destroyed."
+      format.html { redirect_to competitions_url }
       format.json { head :no_content }
     end
   end
