@@ -20,13 +20,10 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
   <%= render 'shared/navigation' %>
 
-  <div class="alerts">
-    <% flash.each do |name, msg| %>
-      <div class="alert-box radius <%= name %> <%= name.to_s == 'notice' ? 'success' : '' %>"><%= msg %></div>
-    <% end %>
-  </div>
+  <%= render 'shared/flash' %>
 
   <div class="container">
     <div class="content">

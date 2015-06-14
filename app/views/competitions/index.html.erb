@@ -1,14 +1,6 @@
-<div id="header">
-  <%= render 'login_logout' %>
-
-  <%= link_to "Past Competitions", past_competitions_path %>
-  <%= link_to "This Year's Competitions", competitions_path %>
-  <%= link_to "Future Competitions", future_competitions_path %>
-</div>
-
 <h1>Dancesport Competitions</h1>
 
-<%= form_tag(@search_path, :method => :post, :class => 'search_form') do %>
+<%= form_tag(@search_path, method: :post, class: 'search_form') do %>
   <%= text_field_tag :location, params[:location], placeholder: "Where do you live?", class: "search_input location" %>
   <%= text_field_tag :distance, params[:distance], placeholder: "How far away?", class: "search_input distance" %>
   <%= select_tag :comp_association, options_for_select(['WDC', 'WDSF', 'Collegiate', 'Independent']), include_blank: true, class: "search_select association" %>
@@ -42,7 +34,7 @@
           <td><%= date_range competition.start_date, competition.end_date, format: :long %></td>
           <td><%= competition.local_comp_association %></td>
           <td><%= competition.location_name %> <br> <%= competition.location %></td>
-          <td><%= link_to competition.website, competition.website_full, :target => '_blank' %></td>
+          <td><%= link_to truncate(competition.website, length: 30), competition.website_full, target: '_blank' %></td>
           <% if user_signed_in? && (can? :manage, competition) %>
           <td>
             <%= link_to 'Show', competition %> <br/>

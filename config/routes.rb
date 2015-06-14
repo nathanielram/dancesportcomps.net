@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-  devise_for :users, controllers: { sessions: 'users/sessions' }#, :skip => :registrations
+  devise_for :users
   resources :competitions do #, except: :show do
     get 'past', on: :collection
     get 'future', on: :collection
