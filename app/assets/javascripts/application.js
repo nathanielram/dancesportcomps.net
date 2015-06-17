@@ -11,16 +11,26 @@
 // about supported directives.
 //
 //= require jquery
-// require turbolinks
-//= require foundation
+//= require jquery.turbolinks
 //= require jquery_ujs
+
+//= require foundation
+
 //= require underscore
 //= require gmaps/google
 //= require twitter/typeahead.min
 //= require typeahead-addresspicker.min
+
 //= require_tree ./libs
+
 // require_tree .
+
 //= require_self
 
-$(document).foundation();
+//= require turbolinks
+
+$(function() {
+	$(document).foundation();
+});
+
 
