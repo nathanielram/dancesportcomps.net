@@ -25,11 +25,13 @@ class Competition < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
-  validates :name, :location_name, :address, :city, :country, :comp_association, :website, :num_days, :start_date, presence: true
+  validates :name, :location_name, :address, :city, :country, :comp_association, :website, :num_days, :start_date, :latitude, :longitude, presence: true
+  validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
+  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
 
   geocoded_by :location_short
 
-  after_validation :geocode, on: [:create, :update], if: :location_updated?
+  before_validation :geocode, on: [:create, :update], if: :location_updated?
 
   def num_days
     if self.end_date.nil? 
@@ -80,6 +82,7 @@ class Competition < ActiveRecord::Base
 
   private
   def location_updated?
+    #(latitude.nil? || longitude.nil?) ||
     address_changed? || city_changed? || country_changed?
     # location_changed?
   end

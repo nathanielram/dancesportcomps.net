@@ -53,8 +53,8 @@ gem 'rails_12factor', group: :production #for heroku
 
 
 gem 'geocoder'
-gem 'geokit'
-gem 'geokit-rails'
+#gem 'geokit'
+#gem 'geokit-rails'
 gem 'underscore-rails'
 gem 'gmaps4rails'
 gem 'country_select', github: 'stefanpenner/country_select'
