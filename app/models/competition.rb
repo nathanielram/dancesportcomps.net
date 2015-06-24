@@ -4,61 +4,59 @@
 #
 #  id               :integer          not null, primary key
 #  name             :string
-#  start_date       :date
-#  end_date         :date
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
-#  location         :string
 #  comp_association :string
-#  address          :string
-#  city             :string
-#  country          :string
 #  website          :string
-#  latitude         :float
-#  longitude        :float
-#  location_name    :string
 #  slug             :string
-#  num_days         :integer
 #
 
 class Competition < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
-  validates :name, :location_name, :address, :city, :country, :comp_association, :website, :num_days, :start_date, :latitude, :longitude, presence: true
-  validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
-  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
+  has_many :occurences
+  accepts_nested_attributes_for :occurences
 
-  geocoded_by :location_short
+  #has_many :locations, through: :occurences
+  #accepts_nested_attributes_for :locations
 
-  before_validation :geocode, on: [:create, :update], if: :location_updated?
 
-  def num_days
-    if self.end_date.nil? 
-      1
-    else
-      ((self.end_date.to_date - start_date.to_date).to_i + 1) 
-    end
-    #else 1 end
-  end
+  validates :name, :comp_association, presence: true
+#  validates :name, :location_name, :address, :city, :country, :comp_association, :website, :num_days, :start_date, :latitude, :longitude, presence: true
+#  validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
+#  validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
 
-  def num_days=(num_days)
-    self.end_date = start_date + (num_days.to_i - 1).days
-  end
+#  geocoded_by :location_short
 
-  def location_short
-    [address, city, country].compact.join(", ")
-  end
+#  before_validation :geocode, on: [:create, :update], if: :location_updated?
 
-  def location
-    [address, city, country_name].compact.join(", ")
-  end    
+  # def num_days
+  #   if self.end_date.nil? 
+  #     1
+  #   else
+  #     ((self.end_date.to_date - start_date.to_date).to_i + 1) 
+  #   end
+  #   #else 1 end
+  # end
 
-  def country_name
-    ISO3166::Country[country.to_s].name unless country.to_s.empty?
-  end
+  # def num_days=(num_days)
+  #   self.end_date = start_date + (num_days.to_i - 1).days
+  # end
 
-  def local_comp_association
+#  def location_short
+#    [address, city, country].compact.join(", ")
+#  end
+
+#  def location
+#    [address, city, country_name].compact.join(", ")
+#  end    
+
+#  def country_name
+#    ISO3166::Country[country.to_s].name unless country.to_s.empty?
+#  end
+
+  def local_comp_association(country)
     a = {}
 
     a[:CA] = {}
@@ -69,6 +67,11 @@ class Competition < ActiveRecord::Base
     a[:US][:WDC] = "NDCA"
     a[:US][:WDSF] = "USA Dance"
 
+    # if !a[country.to_sym].nil? && (a[country.to_sym].key? comp_association.to_sym)
+    #   "#{a[country.to_sym][comp_association.to_sym]} (#{comp_association})"
+    # else
+    #   comp_association
+    # end
     if !a[country.to_sym].nil? && (a[country.to_sym].key? comp_association.to_sym)
       "#{a[country.to_sym][comp_association.to_sym]} (#{comp_association})"
     else
@@ -81,16 +84,16 @@ class Competition < ActiveRecord::Base
   end
 
   private
-  def location_updated?
-    #(latitude.nil? || longitude.nil?) ||
-    address_changed? || city_changed? || country_changed?
-    # location_changed?
-  end
+  # def location_updated?
+  #   #(latitude.nil? || longitude.nil?) ||
+  #   address_changed? || city_changed? || country_changed?
+  #   # location_changed?
+  # end
 
   def slug_candidates
     [
-      #:name,
-      [:name, start_date.year]
+      :name#,
+      #[:name, start_date.year]
     ]
   end
 

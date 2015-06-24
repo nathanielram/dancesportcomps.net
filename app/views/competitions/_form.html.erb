@@ -13,27 +13,31 @@
 
   <%= f.input :name, placeholder: "Really Amazing Dancesport Competition", label: "Competition Name" %>
 
-  <%# f.input :start_date, label: "Start Date", input_html: { class: 'datetimepicker' } %> <%# f.date_select %>
-
-  <%= f.input :start_date, as: :date, html5: true %> <%# f.date_select %>
-
-  <%= f.input :num_days, collection: 1..30, label: "Number of days", selected: @competition.num_days %>
-
-  <%# f.select :num_days, options_for_select(0..30), prompt: "Number of days" %>
-
   <%= f.input :comp_association, collection: ['WDC', 'WDSF', 'Collegiate', 'Independent'], include_blank: true, label: "Competition association" %>
 
-  <%= f.input :location_name, placeholder: "Mariott Really Fancy" %>
-
-  <%= f.input :address, placeholder: "123 Main Street" %>
-
-  <%= f.input :city, placeholder: "New York City, NY" %>
-
-  <%# f.country_select :country, priority_countries: ["US", "CA"], include_blank: true %>
-
-  <%= f.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
-
   <%= f.input :website, placeholder: "http://google.com" %>
+
+  <%# f.association :occurences %>
+
+  <%# f.association :locations %>
+
+  <hr />
+
+  <%= f.simple_fields_for :occurences, @competition.occurences.build do |occurence| %>
+    <%# render 'occurence_form', f: o %>
+    <%= occurence.input :start_date, as: :date, html5: true %> <%# f.date_select %>
+    <%= occurence.input :num_days, collection: 1..30, label: "Number of days" %>
+    <%# link_to_add_association 'add task', f, :occurences %>
+    <hr />
+    <%= occurence.simple_fields_for :locations, occurence.object.location do |location| %>
+      <%= location.input :name, label: "Location name", placeholder: "Mariott Really Fancy" %>
+      <%= location.input :address, placeholder: "123 Main Street" %>
+      <%= location.input :city, placeholder: "New York City, NY" %>
+      <%= location.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
+    <% end %>
+  <% end %>
+
+  
 
   <%= f.submit %>
  

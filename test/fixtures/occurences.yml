@@ -1,13 +1,13 @@
 # == Schema Information
 #
-# Table name: users
+# Table name: occurences
 #
-#  id                 :integer          not null, primary key
-#  email              :string           default(""), not null
-#  encrypted_password :string           default(""), not null
-#  created_at         :datetime
-#  updated_at         :datetime
-#  admin              :boolean          default(FALSE)
+#  id             :integer          not null, primary key
+#  start_date     :date
+#  end_date       :date
+#  created_at     :datetime         not null
+#  updated_at     :datetime         not null
+#  competition_id :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

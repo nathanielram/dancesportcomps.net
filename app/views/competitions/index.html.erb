@@ -28,20 +28,20 @@
     </thead>
 
     <tbody>
-      <% @competitions.each do |competition| %>
+      <% @occurences.each do |occurence| %>
         <tr>
-          <td><%= link_to competition.name, competition %> <%# competition.name %></td>
-          <td><%= date_range competition.start_date, competition.end_date, format: :long %></td>
-          <td><%= competition.local_comp_association %></td>
-          <td><%= competition.location_name %> <br> <%= competition.location %></td>
-          <td><%= link_to truncate(competition.website, length: 30), competition.website_full, target: '_blank' %></td>
-          <% if user_signed_in? && (can? :manage, competition) %>
+          <td><%= link_to occurence.competition.name, occurence.competition %> <%# competition.name %></td>
+          <td><%= date_range occurence.start_date, occurence.end_date, format: :long %></td>
+          <td><%= occurence.competition.local_comp_association(occurence.location.country) %></td>
+          <td><%= occurence.location.name %> <br> <%= occurence.location.location %></td>
+          <td><%= link_to truncate(occurence.competition.website, length: 30), occurence.competition.website_full, target: '_blank' %></td>
+          <%# if user_signed_in? && (can? :manage, competition) %>
           <td>
-            <%= link_to 'Show', competition %> <br/>
-            <%= link_to 'Edit', edit_competition_path(competition) %> <br />
-            <%= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%#= link_to 'Show', competition %> <br/>
+            <%#= link_to 'Edit', edit_competition_path(competition) %> <br />
+            <%#= link_to 'Destroy', competition, method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
-          <% end %>
+          <%# end %>
         </tr>
       <% end %>
     </tbody>

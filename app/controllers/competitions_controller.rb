@@ -13,8 +13,9 @@ class CompetitionsController < ApplicationController
   # GET /competitions.json
   def index
     # @competitions = Competition.all
-    @competitions = Competition.where("end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)).order(start_date: :asc) 
-    search
+    # @competitions = Competition.joins(:occurences).where("occurences.end_date >= ? AND occurences.start_date <= ?", Date.today, (Date.today + 1.year)).order("occurences.start_date asc") 
+    @occurences = Occurence.where("end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)).order(start_date: :asc) 
+    #search
     build_markers
     @search_path = search_competitions_path
     render :index
@@ -108,10 +109,10 @@ class CompetitionsController < ApplicationController
     end
 
     def build_markers
-      @markers = Gmaps4rails.build_markers(@competitions) do |comp, marker|
-        marker.lat comp.latitude
-        marker.lng comp.longitude
-        marker.infowindow comp.name
+      @markers = Gmaps4rails.build_markers(@occurences) do |occurence, marker|
+        marker.lat occurence.location.latitude
+        marker.lng occurence.location.longitude
+        marker.infowindow occurence.competition.name
       end
     end    
 
@@ -122,12 +123,15 @@ class CompetitionsController < ApplicationController
 
     def search_association
       return if params[:comp_association].blank?
-      Competition.where("comp_association = ?", params[:comp_association]).order(start_date: :asc) 
+      Competition.join(:occurences).where("comp_association = ?", params[:comp_association]).order("occurences.start_date asc") 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params
-      params.require(:competition).permit(:name, :comp_association, :start_date, :end_date, :num_days, :location_name, :address, :city, :country, :website, :latitude, :longitude, :distance)
+      #params.require(:competition).permit(:name, :comp_association, :start_date, :end_date, :num_days, :location_name, :address, :city, :country, :website, :latitude, :longitude, :distance)
+      params.require(:competition).permit(:name, :comp_association, :website, 
+        occurences_attributes: [:id, :start_date, :end_date, :num_days, :_destroy], 
+        locations_attributes: [:id, :name, :address, :city, :country, :latitude, :longitude, :_destroy])
     end
 
     def user_not_authorized

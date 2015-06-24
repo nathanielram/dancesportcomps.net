@@ -7,9 +7,8 @@
 #  encrypted_password :string           default(""), not null
 #  created_at         :datetime
 #  updated_at         :datetime
-#  admin              :boolean          default("false")
+#  admin              :boolean          default(FALSE)
 #
-
 
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:

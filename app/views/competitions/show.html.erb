@@ -4,19 +4,21 @@
 </p>
 
 <p>
-  <strong>Date:</strong>
-  <%= date_range @competition.start_date, @competition.end_date, format: :long %>
+  <strong>Date(s):</strong>
+  <% @competition.occurences.each do |occurence| %>
+    <%= date_range occurence.start_date, occurence.end_date, format: :long %>
+  <% end %>
 </p>
 
 <p>
   <strong>Association:</strong>
-  <%= @competition.local_comp_association %>
+  <%= @competition.local_comp_association(@competition.occurences.first.location.country) %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @competition.location_name %><br>
-  <%= @competition.location %>
+  <%= @competition.occurences.first.location.name %><br>
+  <%= @competition.occurences.first.location.location %>
 </p>
 
 <p>
