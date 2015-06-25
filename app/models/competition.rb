@@ -18,8 +18,8 @@ class Competition < ActiveRecord::Base
   has_many :occurences
   accepts_nested_attributes_for :occurences
 
-  #has_many :locations, through: :occurences
-  #accepts_nested_attributes_for :locations
+  has_many :locations, through: :occurences
+  accepts_nested_attributes_for :locations
 
 
   validates :name, :comp_association, presence: true

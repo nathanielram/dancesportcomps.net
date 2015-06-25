@@ -17,7 +17,7 @@
 class Location < ActiveRecord::Base
 
 	# belongs_to :occurence
-	# has_many :competitions, through: :occurences
+	has_many :competitions, through: :occurences
   has_many :occurences
 
   validates :name, :address, :city, :country, :latitude, :longitude, presence: true
