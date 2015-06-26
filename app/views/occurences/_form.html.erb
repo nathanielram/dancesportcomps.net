@@ -13,8 +13,8 @@
 
 	<%= f.input :start_date, as: :date, html5: true %> <%# f.date_select %>
 	<%= f.input :num_days, collection: 1..30, label: "Number of days" %>
-	<%= f.association :competition, label_method: :form_select %>
-	<%= f.association :location, label_method: :form_select %>
+	<%= f.association :competition, collection: Competition.order('select_form ASC'), label_method: :form_select %>
+	<%= f.association :location, collection: Location.order('select_form ASC'), label_method: :form_select %>
 
   <%= f.submit %>
  

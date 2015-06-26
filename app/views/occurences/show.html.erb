@@ -10,12 +10,12 @@
 
 <p>
   <strong>Competition:</strong>
-  <%= @occurence.competition %>
+  <%= @occurence.competition.name %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @occurence.location %>
+  <%= @occurence.location.name %>
 </p>
 
 <% if user_signed_in? && (can? :manage, @occurence) %>
