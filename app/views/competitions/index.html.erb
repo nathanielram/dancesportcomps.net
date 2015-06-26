@@ -39,7 +39,7 @@
           <td><%= link_to occurence.competition.name, occurence.competition %> <%# competition.name %> </td>
           <td><%= date_range occurence.start_date, occurence.end_date, format: :long %></td>
           <td><%= occurence.competition.local_comp_association %> </td>
-          <td><%= occurence.location.name %> <br> <%= occurence.location.city_full %></td>
+          <td><%= occurence.location.city_full %></td>
           <td><%= link_to truncate(occurence.competition.website, length: 25), occurence.competition.website_full, target: '_blank' %></td>
           <% if user_signed_in? && (can? :manage, [Competition, Occurence, Location]) %>
           <td>

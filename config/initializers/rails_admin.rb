@@ -32,4 +32,32 @@ RailsAdmin.config do |config|
     # history_show
   end
 
+  config.model Competition do
+    list do
+      field :id
+      field :name
+      field :comp_association
+      field :country
+      field :website
+    end
+  end
+
+  config.model Location do
+    list do
+      field :id
+      field :name
+      field :location
+    end
+  end
+
+  config.model Occurence do
+    list do
+      field :id
+      field :start_date
+      field :end_date
+      field :competition
+      field :location
+    end
+  end
+
 end

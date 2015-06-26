@@ -9,6 +9,7 @@
 #  comp_association :string
 #  website          :string
 #  slug             :string
+#  country          :string
 #
 
 require 'test_helper'

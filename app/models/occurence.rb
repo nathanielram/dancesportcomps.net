@@ -5,9 +5,10 @@
 #  id             :integer          not null, primary key
 #  start_date     :date
 #  end_date       :date
+#  competition_id :integer
+#  location_id    :integer
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  competition_id :integer
 #
 
 class Occurence < ActiveRecord::Base

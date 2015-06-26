@@ -9,6 +9,7 @@
 #  comp_association :string
 #  website          :string
 #  slug             :string
+#  country          :string
 #
 
 class Competition < ActiveRecord::Base
@@ -106,7 +107,7 @@ class Competition < ActiveRecord::Base
   end
 
   def country_name
-    ISO3166::Country[country.to_s].name unless country.to_s.empty?
+    ISO3166::Country[country.to_s].name unless (country.to_s.empty? && ISO3166::Country[country.to_s].nil?)
   end
 
 end

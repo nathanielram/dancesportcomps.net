@@ -9,6 +9,7 @@
 #  comp_association :string
 #  website          :string
 #  slug             :string
+#  country          :string
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
