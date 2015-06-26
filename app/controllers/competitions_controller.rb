@@ -13,8 +13,7 @@ class CompetitionsController < ApplicationController
   # GET /competitions.json
   def index
     # @competitions = Competition.all
-    # @competitions = Competition.joins(:occurences).where("occurences.end_date >= ? AND occurences.start_date <= ?", Date.today, (Date.today + 1.year)).order("occurences.start_date asc") 
-    @occurences = Occurence.where("end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)).order(start_date: :asc) 
+    @occurences = Occurence.includes(:location, :competition).where("end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)).order(start_date: :asc) 
     #search
     build_markers
     @search_path = search_competitions_path
@@ -22,26 +21,26 @@ class CompetitionsController < ApplicationController
   end
 
   def past
-    @competitions = Competition.where("end_date < ?", Date.today).order(start_date: :desc) 
-    search
-    build_markers
-    @search_path = past_search_competitions_path
-    render :index
+    #@competitions = Competition.where("end_date < ?", Date.today).order(start_date: :desc) 
+    #search
+    #build_markers
+    #@search_path = past_search_competitions_path
+    #render :index
   end
 
   def future
-    @competitions = Competition.where("start_date > ?", (Date.today + 1.year)).order(start_date: :asc) 
-    search
-    build_markers
-    @search_path = future_search_competitions_path
-    render :index
+    #@competitions = Competition.where("start_date > ?", (Date.today + 1.year)).order(start_date: :asc) 
+    #search
+    #build_markers
+    #@search_path = future_search_competitions_path
+    #render :index
   end
 
   def search 
-    search_results = [search_location, search_association].compact
-    if search_results.present?
-      search_results.each { |s| @competitions &= s }
-    end
+    #search_results = [search_location, search_association].compact
+    #if search_results.present?
+    #  search_results.each { |s| @competitions &= s }
+    #end
   end
 
   # GET /competitions/1
@@ -112,7 +111,7 @@ class CompetitionsController < ApplicationController
       @markers = Gmaps4rails.build_markers(@occurences) do |occurence, marker|
         marker.lat occurence.location.latitude
         marker.lng occurence.location.longitude
-        marker.infowindow occurence.competition.name
+        marker.infowindow render_to_string(:partial => "competitions/infowindow", :locals => { :object => occurence})
       end
     end    
 
@@ -129,9 +128,10 @@ class CompetitionsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def competition_params
       #params.require(:competition).permit(:name, :comp_association, :start_date, :end_date, :num_days, :location_name, :address, :city, :country, :website, :latitude, :longitude, :distance)
-      params.require(:competition).permit(:name, :comp_association, :website, 
-        occurences_attributes: [:id, :start_date, :end_date, :num_days, :_destroy], 
-        locations_attributes: [:id, :name, :address, :city, :country, :latitude, :longitude, :_destroy])
+      #locations_attributes: [:id, :name, :address, :city, :country, :latitude, :longitude, :_destroy],
+      params.require(:competition).permit(:name, :comp_association, :website, :country#,
+        #locations_attributes: [:id, :name, :address, :city, :country, :latitude, :longitude, :_destroy]
+      )
     end
 
     def user_not_authorized

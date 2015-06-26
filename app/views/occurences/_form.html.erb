@@ -1,0 +1,21 @@
+<%= simple_form_for(@occurence, :html=> { class: 'edit_form' }) do |f| %>
+  <% if @occurence.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@occurence.errors.count, "error") %> prohibited this occurence from being saved:</h2>
+
+      <ul>
+      <% @occurence.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.input :start_date, as: :date, html5: true %> <%# f.date_select %>
+	<%= f.input :num_days, collection: 1..30, label: "Number of days" %>
+	<%= f.association :competition, label_method: :form_select %>
+	<%= f.association :location, label_method: :form_select %>
+
+  <%= f.submit %>
+ 
+<% end %>

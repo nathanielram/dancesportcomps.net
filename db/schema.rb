@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20150622045722) do
     t.string   "comp_association"
     t.string   "website"
     t.string   "slug"
+    t.string   "country"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|

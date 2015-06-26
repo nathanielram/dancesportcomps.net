@@ -14,11 +14,13 @@ class Occurence < ActiveRecord::Base
 
 	belongs_to :competition
 	belongs_to :location
-	# belongs_to :location
-	# accepts_nested_attributes_for :location
+	
+	accepts_nested_attributes_for :competition
+	accepts_nested_attributes_for :location
 
 
 	validates :num_days, :start_date, presence: true
+	validates :competition, :location, presence: true
 
 	def num_days
     if self.end_date.nil? 

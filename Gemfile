@@ -48,6 +48,7 @@ end
 
 
 gem 'simple_form'
+#gem 'cocoon'
 
 gem 'rails_12factor', group: :production #for heroku
 

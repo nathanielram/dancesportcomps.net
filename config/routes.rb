@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     post 'future/search', to: 'competitions#future', on: :collection
   end
 
+  resources :occurences
+
+  resources :locations
+
   root 'competitions#index'
 
   #get '/:id', to: 'competitions#show'

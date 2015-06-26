@@ -10,6 +10,12 @@
 <% if user_signed_in? && (can? :create, Competition) %>
   <%= link_to 'New Competition', new_competition_path %>
 <% end %>
+<% if user_signed_in? && (can? :create, Location) %>
+  <%= link_to 'New Location', new_location_path %>
+<% end %>
+<% if user_signed_in? && (can? :create, Occurence) %>
+  <%= link_to 'New Occurence', new_occurence_path %>
+<% end %>
 
 <div class="map-container">
   <div id="map" class="map"></div>
@@ -30,11 +36,29 @@
     <tbody>
       <% @occurences.each do |occurence| %>
         <tr>
-          <td><%= link_to occurence.competition.name, occurence.competition %> <%# competition.name %></td>
+          <td><%= link_to occurence.competition.name, occurence.competition %> <%# competition.name %> </td>
           <td><%= date_range occurence.start_date, occurence.end_date, format: :long %></td>
-          <td><%= occurence.competition.local_comp_association(occurence.location.country) %></td>
-          <td><%= occurence.location.name %> <br> <%= occurence.location.location %></td>
-          <td><%= link_to truncate(occurence.competition.website, length: 30), occurence.competition.website_full, target: '_blank' %></td>
+          <td><%= occurence.competition.local_comp_association %> </td>
+          <td><%= occurence.location.name %> <br> <%= occurence.location.city_full %></td>
+          <td><%= link_to truncate(occurence.competition.website, length: 25), occurence.competition.website_full, target: '_blank' %></td>
+          <% if user_signed_in? && (can? :manage, [Competition, Occurence, Location]) %>
+          <td>
+            <%#= link_to 'Show', occurence.competition %>
+            <%= link_to 'Edit Competition', edit_competition_path(occurence.competition) %> <br />
+            <%= link_to 'Edit Location', edit_location_path(occurence.location) %> <br />
+            <%= link_to 'Edit Occurence', edit_occurence_path(occurence) %> <br />
+            <%#= link_to 'Destroy Competition', occurence.competition, method: :delete, data: { confirm: 'Are you sure?' } %>
+          </td>
+          <% end %>
+        </tr>
+      <% end %>
+      <%# @occurences.each do |occurence| %>
+        <tr>
+          <td><%#= link_to occurence.competition.name, occurence.competition %> <%# competition.name %></td>
+          <td><%#= date_range occurence.start_date, occurence.end_date, format: :long %></td>
+          <td><%#= occurence.competition.local_comp_association(occurence.location.country) %></td>
+          <td><%#= occurence.location.name %> <br> <%#= occurence.location.location %></td>
+          <td><%#= link_to truncate(occurence.competition.website, length: 30), occurence.competition.website_full, target: '_blank' %></td>
           <%# if user_signed_in? && (can? :manage, competition) %>
           <td>
             <%#= link_to 'Show', competition %> <br/>
@@ -43,7 +67,7 @@
           </td>
           <%# end %>
         </tr>
-      <% end %>
+      <%# end %>
     </tbody>
   </table>
 </div>

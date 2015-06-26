@@ -1,0 +1,21 @@
+<%= simple_form_for(@location, :html=> { class: 'edit_form' }) do |f| %>
+  <% if @location.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@location.errors.count, "error") %> prohibited this location from being saved:</h2>
+
+      <ul>
+      <% @location.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+	<%= f.input :name, label: "Location name", placeholder: "Mariott Really Fancy" %>
+  <%= f.input :address, placeholder: "123 Main Street" %>
+  <%= f.input :city, placeholder: "New York City, NY" %>
+  <%= f.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
+
+  <%= f.submit %>
+ 
+<% end %>

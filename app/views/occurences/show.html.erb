@@ -1,0 +1,24 @@
+<p>
+  <strong>Start Date:</strong>
+  <%= @occurence.start_date %>
+</p>
+
+<p>
+  <strong>End Date:</strong>
+  <%= @occurence.end_date %>
+</p>
+
+<p>
+  <strong>Competition:</strong>
+  <%= @occurence.competition %>
+</p>
+
+<p>
+  <strong>Location:</strong>
+  <%= @occurence.location %>
+</p>
+
+<% if user_signed_in? && (can? :manage, @occurence) %>
+<%= link_to 'Edit', edit_occurence_path(@occurence) %> |
+<% end %>
+<%= link_to 'Back', competitions_path %>

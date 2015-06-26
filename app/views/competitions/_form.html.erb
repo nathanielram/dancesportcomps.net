@@ -17,25 +17,54 @@
 
   <%= f.input :website, placeholder: "http://google.com" %>
 
+  <%= f.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
+
   <%# f.association :occurences %>
 
   <%# f.association :locations %>
 
-  <hr />
 
-  <%= f.simple_fields_for :occurences, @competition.occurences.build do |occurence| %>
+
+    <%# f.simple_fields_for :locations, @competition.locations.build do |l| %>
+      <%# l.input :name, label: "Location name", placeholder: "Mariott Really Fancy" %>
+      <%# l.input :address, placeholder: "123 Main Street" %>
+      <%# l.input :city, placeholder: "New York City, NY" %>
+      <%# l.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
+      <%# l.simple_fields_for :occurences, @competition.occurences.build do |o| %>
+        <%# o.hidden_field :competition_id, value: @competition.id %>
+        <%# o.input :start_date, as: :date, html5: true %> <%# f.date_select %>
+        <%# o.input :num_days, collection: 1..30, label: "Number of days" %>
+      <%# end %>
+    <%# end %>
+
+
+
+  <%# f.simple_fields_for :occurences do |occurence| %>
+    <%# render 'occurence_fields', f: occurence %>
+  <%# end %>
+
+  <%#= f.simple_fields_for :locations do |location| %>
+    <%#= render 'location_fields', f: location %>
+  <%# end %>
+
+  <div> 
+    <%#= link_to_add_association 'add location', f, :locations %>
+  </div>
+ 
+
+
+  <%# f.simple_fields_for :occurences, @competition.occurences.build do |occurence| %>
     <%# render 'occurence_form', f: o %>
-    <%= occurence.input :start_date, as: :date, html5: true %> <%# f.date_select %>
-    <%= occurence.input :num_days, collection: 1..30, label: "Number of days" %>
+    <%# occurence.input :start_date, as: :date, html5: true %> <%# f.date_select %>
+    <%# occurence.input :num_days, collection: 1..30, label: "Number of days" %>
     <%# link_to_add_association 'add task', f, :occurences %>
-    <hr />
-    <%= occurence.simple_fields_for :locations, occurence.object.location do |location| %>
-      <%= location.input :name, label: "Location name", placeholder: "Mariott Really Fancy" %>
-      <%= location.input :address, placeholder: "123 Main Street" %>
-      <%= location.input :city, placeholder: "New York City, NY" %>
-      <%= location.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
-    <% end %>
-  <% end %>
+    <%# occurence.simple_fields_for :locations, @competition.object.locations.build do |location| %>
+      <%# location.input :name, label: "Location name", placeholder: "Mariott Really Fancy" %>
+      <%# location.input :address, placeholder: "123 Main Street" %>
+      <%# location.input :city, placeholder: "New York City, NY" %>
+      <%# location.input :country, as: :country, priority: ["US", "CA"], include_blank: true %>
+    <%# end %>
+  <%# end %>
 
   
 
