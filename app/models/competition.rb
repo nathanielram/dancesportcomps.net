@@ -18,8 +18,8 @@ class Competition < ActiveRecord::Base
   has_many :occurences, dependent: :destroy
   has_many :locations, through: :occurences
 
-  accepts_nested_attributes_for :occurences
-  accepts_nested_attributes_for :locations
+  #accepts_nested_attributes_for :occurences
+  #accepts_nested_attributes_for :locations
 
 
   validates :name, :comp_association, :country, presence: true

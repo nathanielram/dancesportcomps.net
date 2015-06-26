@@ -20,8 +20,8 @@ class Location < ActiveRecord::Base
 	has_many :competitions, through: :occurences
   has_many :occurences
 
-  accepts_nested_attributes_for :competitions
-  accepts_nested_attributes_for :occurences
+  #accepts_nested_attributes_for :competitions
+  #accepts_nested_attributes_for :occurences
 
   validates :name, :address, :city, :country, :latitude, :longitude, presence: true
   validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
