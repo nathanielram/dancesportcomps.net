@@ -12,13 +12,13 @@
 
 <p>
   <strong>Association:</strong>
-  <%= @competition.local_comp_association(@competition.occurences.first.location.country) %>
+  <%= @competition.local_comp_association %>
 </p>
 
 <p>
   <strong>Location:</strong>
-  <%= @competition.occurences.first.location.name %><br>
-  <%= @competition.occurences.first.location.location %>
+  <%= @competition.occurences.last.location.name %><br>
+  <%= @competition.occurences.last.location.location %>
 </p>
 
 <p>
