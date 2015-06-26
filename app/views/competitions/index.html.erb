@@ -44,7 +44,7 @@
           <% if user_signed_in? && (can? :manage, [Competition, Occurence, Location]) %>
           <td>
             <%#= link_to 'Show', occurence.competition %>
-            <%= link_to 'Edit Comp', edit_competition_path(occurence.competition) %> <br />
+            <%= link_to 'Edit Competition', edit_competition_path(occurence.competition) %> <br />
             <%= link_to 'Edit Location', edit_location_path(occurence.location) %> <br />
             <%= link_to 'Edit Occurence', edit_occurence_path(occurence) %> <br />
             <%#= link_to 'Destroy Competition', occurence.competition, method: :delete, data: { confirm: 'Are you sure?' } %>
