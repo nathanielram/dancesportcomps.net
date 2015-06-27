@@ -1,11 +1,6 @@
 <h1>Dancesport Competitions</h1>
 
-<%= form_tag(@search_path, method: :post, class: 'search_form') do %>
-  <%= text_field_tag :location, params[:location], placeholder: "Where do you live?", class: "search_input location" %>
-  <%= text_field_tag :distance, params[:distance], placeholder: "How far away?", class: "search_input distance" %>
-  <%= select_tag :comp_association, options_for_select(['WDC', 'WDSF', 'Collegiate', 'Independent']), include_blank: true, class: "search_select association" %>
-  <%= submit_tag "Find", class: "button" %>
-<% end %>
+<%#= render 'search' %>
 
 <% if user_signed_in? && (can? :create, Competition) %>
   <%= link_to 'New Competition', new_competition_path %>

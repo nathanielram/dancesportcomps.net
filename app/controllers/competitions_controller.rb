@@ -16,7 +16,7 @@ class CompetitionsController < ApplicationController
     @occurences = Occurence.includes(:location, :competition).where("end_date >= ? AND start_date <= ?", Date.today, (Date.today + 1.year)).order(start_date: :asc) 
     #search
     build_markers
-    @search_path = search_competitions_path
+    #@search_path = search_competitions_path
     render :index
   end
 
