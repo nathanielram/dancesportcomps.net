@@ -1,12 +1,13 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
-  resources :competitions do #, except: :show do
-    get 'past', on: :collection
-    get 'future', on: :collection
-    post 'search', to: 'competitions#index', on: :collection
-    post 'past/search', to: 'competitions#past', on: :collection
-    post 'future/search', to: 'competitions#future', on: :collection
+  resources :competitions, except: :show do
+    get '/:id', to: 'competitions#show', as: :competition
+    #get 'past', on: :collection
+    #get 'future', on: :collection
+    #post 'search', to: 'competitions#index', on: :collection
+    #post 'past/search', to: 'competitions#past', on: :collection
+    #post 'future/search', to: 'competitions#future', on: :collection
   end
 
   resources :occurences
