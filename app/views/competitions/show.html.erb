@@ -6,7 +6,7 @@
 <p>
   <strong>Date(s):</strong>
   <% @competition.occurences.each do |occurence| %>
-    <%= date_range occurence.start_date, occurence.end_date, format: :long %>
+    <br /><%= date_range occurence.start_date, occurence.end_date, format: :long %> 
   <% end %>
 </p>
 
