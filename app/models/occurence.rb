@@ -20,8 +20,9 @@ class Occurence < ActiveRecord::Base
 	#accepts_nested_attributes_for :location
 
 
-	validates :num_days, :start_date, presence: true
-	validates :competition, :location, presence: true
+	validates :num_days, :start_date, :competition, :location, presence: true
+
+	validate :competition_and_location_in_same_country
 
 	def num_days
     if self.end_date.nil? 
@@ -34,6 +35,16 @@ class Occurence < ActiveRecord::Base
 
   def num_days=(num_days)
     self.end_date = start_date + (num_days.to_i - 1).days
+  end
+
+  private
+  def competition_and_location_in_same_country
+  	if competition.country != location.country
+  		errors.add(:competition, "must be in the same country as Location")
+  		errors.add(:location, "must be in the same country as Competition")
+  		#competition.errors.add(:country, "must be in the same country as location")
+  		#location.errors.add(:country, "must be in the same country as competition")
+  	end
   end
 
 end

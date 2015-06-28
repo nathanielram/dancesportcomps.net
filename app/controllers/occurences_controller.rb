@@ -1,6 +1,6 @@
 class OccurencesController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!#, except: [:show]
   before_action :set_occurence, only: [:show, :edit, :update, :destroy]
 
   load_and_authorize_resource

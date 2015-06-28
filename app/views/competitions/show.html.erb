@@ -1,3 +1,5 @@
+<% @competition.occurences.order(start_date: :asc) %>
+
 <p>
   <strong>Name:</strong>
   <%= @competition.name %>
@@ -17,8 +19,10 @@
 
 <p>
   <strong>Location:</strong>
-  <%= @competition.occurences.last.location.name %><br>
-  <%= @competition.occurences.last.location.location %>
+  <% unless @competition.occurences.empty? do %>
+    <%= @competition.occurences.last.location.name %><br>
+    <%= @competition.occurences.last.location.location %>
+  <% end %>
 </p>
 
 <p>
@@ -27,6 +31,6 @@
 </p>
 
 <% if user_signed_in? && (can? :manage, @competition) %>
-<%= link_to 'Edit', edit_competition_path(@competition) %> |
+  <%= link_to 'Edit', edit_competition_path(@competition) %> |
 <% end %>
 <%= link_to 'Back', competitions_path %>

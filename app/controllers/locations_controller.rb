@@ -1,9 +1,12 @@
 class LocationsController < ApplicationController
 
-  before_action :authenticate_user!, only: [:new, :edit, :create, :update, :destroy]
+  before_action :authenticate_user!
   before_action :set_location, only: [:show, :edit, :update, :destroy]
 
   load_and_authorize_resource
+
+  def index
+  end
 
   def search 
     search_results = [search_location, search_association].compact

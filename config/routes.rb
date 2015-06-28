@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
   resources :competitions do #, except: :show do
-    #get '/:id', to: 'competitions#show', as: :competition
+    #get '/:id', to: 'competitions#show'#, as: :competition
     #get 'past', on: :collection
     #get 'future', on: :collection
     #post 'search', to: 'competitions#index', on: :collection
