@@ -16,7 +16,7 @@ class Competition < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: [:slugged, :finders]
 
-  has_many :occurences, dependent: :destroy
+  has_many :occurences, -> { order(start_date: :desc) }, dependent: :destroy
   has_many :locations, through: :occurences
 
   #accepts_nested_attributes_for :occurences

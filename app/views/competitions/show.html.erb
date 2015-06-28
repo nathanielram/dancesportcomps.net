@@ -18,8 +18,8 @@
 <p>
   <strong>Location:</strong>
   <% unless @competition.occurences.empty? %>
-    <%= @competition.occurences.last.location.name %><br>
-    <%= @competition.occurences.last.location.location %>
+    <%= @competition.occurences.first.location.name %><br>
+    <%= @competition.occurences.first.location.location %>
   <% end %>
 </p>
 
