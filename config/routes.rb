@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users
+
+  #get '/:competition', to: 'competitions#show', as: :competition
+
   resources :competitions do #, except: :show do
-    #get '/:id', to: 'competitions#show'#, as: :competition
     #get 'past', on: :collection
     #get 'future', on: :collection
     #post 'search', to: 'competitions#index', on: :collection
@@ -10,13 +12,11 @@ Rails.application.routes.draw do
     #post 'future/search', to: 'competitions#future', on: :collection
   end
 
-  resources :occurences
+  resources :occurences#, path: 'competitions/dates'
 
   resources :locations
 
   root 'competitions#index'
-
-  #get '/:id', to: 'competitions#show'
   
 
   # The priority is based upon order of creation: first created -> highest priority.

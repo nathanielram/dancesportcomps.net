@@ -12,3 +12,12 @@
 <%= link_to 'Edit', edit_location_path(@location) %> |
 <% end %>
 <%= link_to 'Back', competitions_path %>
+<% if user_signed_in? && (can? :create, Competition) %>
+  | <%= link_to 'New Competition', new_competition_path %>
+<% end %>
+<% if user_signed_in? && (can? :create, Location) %>
+  | <%= link_to 'New Location', new_location_path %>
+<% end %>
+<% if user_signed_in? && (can? :create, Occurence) %>
+  | <%= link_to 'New Occurence', new_occurence_path %>
+<% end %>

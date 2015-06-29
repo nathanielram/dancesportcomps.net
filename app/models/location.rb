@@ -23,6 +23,7 @@ class Location < ActiveRecord::Base
   #accepts_nested_attributes_for :occurences
 
   validates :name, :address, :city, :country, :latitude, :longitude, presence: true
+  validates :name, :latitude, :longitude, uniqueness: true
   validates :latitude , numericality: { greater_than_or_equal_to:  -90, less_than_or_equal_to:  90 }
   validates :longitude, numericality: { greater_than_or_equal_to: -180, less_than_or_equal_to: 180 }
 
