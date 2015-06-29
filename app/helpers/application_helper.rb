@@ -5,7 +5,7 @@ module ApplicationHelper
       content_for :title, title
     else
     	default_title = "Dancesport Competitions"
-      content_for?(:title) ? '#{content_for(:title)} | #{default_title}' : default_title
+      content_for?(:title) ? "#{content_for(:title)} | #{default_title}" : default_title
     end
   end
 
