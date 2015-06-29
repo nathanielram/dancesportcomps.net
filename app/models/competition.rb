@@ -23,7 +23,7 @@ class Competition < ActiveRecord::Base
   #accepts_nested_attributes_for :locations
 
   validates :name, :comp_association, :country, presence: true
-  validates :name, uniqueness: true
+  validates :name, :website, uniqueness: true
 
   def local_comp_association
     a = {}

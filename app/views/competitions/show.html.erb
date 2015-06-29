@@ -1,3 +1,6 @@
+<% title @competition.name %>
+<% meta_description "Compete at #{@competition.name} on #{date_range @competition.occurences.first.start_date, @competition.occurences.first.end_date, format: :long}" %>
+
 <p>
   <strong>Name:</strong>
   <%= @competition.name %>
