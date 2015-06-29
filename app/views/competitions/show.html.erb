@@ -1,5 +1,5 @@
 <% title @competition.name %>
-<% meta_description "Compete at #{@competition.name} on #{date_range @competition.occurences.first.start_date, @competition.occurences.first.end_date, format: :long}" %>
+<% meta_description "#{@competition.name} is a dancesport competition in #{@competition.occurences.first.location.city_full}" %>
 
 <p>
   <strong>Name:</strong>
