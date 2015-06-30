@@ -1,5 +1,7 @@
 <% title @competition.name %>
-<% meta_description "#{@competition.name} is a dancesport competition in #{@competition.occurences.first.location.city_full}" %>
+<% if @competition.occurences.present? %>
+  <% meta_description "#{@competition.name} is a dancesport competition in #{@competition.occurences.first.location.city_full}" %>
+<% end %>
 
 <p>
   <strong>Name:</strong>
@@ -20,7 +22,7 @@
 
 <p>
   <strong>Location:</strong>
-  <% unless @competition.occurences.empty? %>
+  <% if @competition.occurences.present? %>
     <%= @competition.occurences.first.location.name %><br>
     <%= @competition.occurences.first.location.location %>
   <% end %>
