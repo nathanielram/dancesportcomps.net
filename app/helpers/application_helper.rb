@@ -13,7 +13,7 @@ module ApplicationHelper
     if desc.present?
       content_for :meta_description, desc
     else
-    	default_description = "Global listing of dancesport competitions"
+    	default_description = "List of global dancesport competitions. Helping you find your next competition!"
       content_for?(:meta_description) ? content_for(:meta_description) : default_description
     end
   end

@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20150622045722) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.string   "comp_association"
+    t.string   "country"
     t.string   "website"
     t.string   "slug"
-    t.string   "country"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
